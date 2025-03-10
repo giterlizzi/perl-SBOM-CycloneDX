@@ -169,6 +169,16 @@ sub get_component_by_purl {
 
 }
 
+sub get_component_by_bom_ref {
+
+    my ($self, $bom_ref) = @_;
+
+    foreach my $component (@{$self->components}) {
+        return $component if ($component->bom_ref && $component->bom_ref eq $bom_ref);
+    }
+
+}
+
 sub get_vulnerabilities_for_bom_ref {
 
     my ($self, $bom_ref) = @_;
@@ -527,7 +537,15 @@ Adds a relationship between one or more components.
 Return the component with specific PURL string.
 
     if ($bom->get_component_by_purl($purl)) {
-        say "Found component with $purl";
+        say "Found component with $purl PURL";
+    }
+
+=item $bom->get_component_by_bom_ref
+
+Return the component with specific BOM-Ref string.
+
+    if ($bom->get_component_by_bom_ref($bom_ref)) {
+        say "Found component with $bom_ref BOM-Ref";
     }
 
 =item $bom->get_vulnerabilities_for_bom_ref
