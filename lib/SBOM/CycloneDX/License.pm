@@ -32,7 +32,7 @@ sub BUILD {
 }
 
 has bom_ref         => (is => 'rw', isa => Str);
-has id              => (is => 'rw', isa => Str);
+has id              => (is => 'rw', isa => Str, trigger => 1);
 has name            => (is => 'rw', isa => Str);
 has acknowledgement => (is => 'rw', isa => Enum [qw(declared concluded)]);
 has text            => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::Attachment']);
@@ -50,6 +50,11 @@ has properties => (
     isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::Property']],
     default => sub { SBOM::CycloneDX::List->new }
 );
+
+sub _trigger_id {
+    my ($self) = @_;
+    $self->url('https://opensource.org/license/' . $self->id) unless $self->url;
+}
 
 sub TO_JSON {
 
