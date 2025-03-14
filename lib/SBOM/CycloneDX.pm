@@ -342,7 +342,159 @@ L<https://www.cyclonedx.org>
 
 =over
 
+=item SBOM::CycloneDX
 
+=item SBOM::CycloneDX::Advisory
+
+=item SBOM::CycloneDX::Annotation
+
+=item SBOM::CycloneDX::Annotation::Annotator
+
+=item SBOM::CycloneDX::Attachment
+
+=item SBOM::CycloneDX::Component
+
+=item SBOM::CycloneDX::Component::Commit
+
+=item SBOM::CycloneDX::Component::ConfidenceInterval
+
+=item SBOM::CycloneDX::Component::Diff
+
+=item SBOM::CycloneDX::Component::Graphic
+
+=item SBOM::CycloneDX::Component::GraphicsCollection
+
+=item SBOM::CycloneDX::Component::ModelCard
+
+=item SBOM::CycloneDX::Component::Patch
+
+=item SBOM::CycloneDX::Component::Pedigree
+
+=item SBOM::CycloneDX::Component::PerformanceMetric
+
+=item SBOM::CycloneDX::Component::QuantitativeAnalysis
+
+=item SBOM::CycloneDX::Component::SWID
+
+=item SBOM::CycloneDX::CryptoProperties
+
+=item SBOM::CycloneDX::CryptoProperties::AlgorithmProperties
+
+=item SBOM::CycloneDX::CryptoProperties::CertificateProperties
+
+=item SBOM::CycloneDX::CryptoProperties::CipherSuite
+
+=item SBOM::CycloneDX::CryptoProperties::Ikev2TransformType
+
+=item SBOM::CycloneDX::CryptoProperties::ProtocolProperties
+
+=item SBOM::CycloneDX::CryptoProperties::RelatedCryptoMaterialProperties
+
+=item SBOM::CycloneDX::CryptoProperties::SecuredBy
+
+=item SBOM::CycloneDX::DataGovernance
+
+=item SBOM::CycloneDX::DataGovernanceResponsibleParty
+
+=item SBOM::CycloneDX::Declarations
+
+=item SBOM::CycloneDX::Declarations::Affirmation
+
+=item SBOM::CycloneDX::Declarations::Assessor
+
+=item SBOM::CycloneDX::Declarations::Attestation
+
+=item SBOM::CycloneDX::Declarations::Claim
+
+=item SBOM::CycloneDX::Declarations::Confidence
+
+=item SBOM::CycloneDX::Declarations::Conformance
+
+=item SBOM::CycloneDX::Declarations::Contents
+
+=item SBOM::CycloneDX::Declarations::Data
+
+=item SBOM::CycloneDX::Declarations::Evidence
+
+=item SBOM::CycloneDX::Declarations::Map
+
+=item SBOM::CycloneDX::Declarations::Signatory
+
+=item SBOM::CycloneDX::Declarations::Targets
+
+=item SBOM::CycloneDX::Definitions
+
+=item SBOM::CycloneDX::Dependency
+
+=item SBOM::CycloneDX::ExternalReference
+
+=item SBOM::CycloneDX::Formulation
+
+=item SBOM::CycloneDX::Hash
+
+=item SBOM::CycloneDX::IdentifiableAction
+
+=item SBOM::CycloneDX::Issue
+
+=item SBOM::CycloneDX::Issue::Source
+
+=item SBOM::CycloneDX::License
+
+=item SBOM::CycloneDX::License::Licensee
+
+=item SBOM::CycloneDX::License::Licensing
+
+=item SBOM::CycloneDX::License::Licensor
+
+=item SBOM::CycloneDX::License::Purchaser
+
+=item SBOM::CycloneDX::Metadata
+
+=item SBOM::CycloneDX::Metadata::Lifecycle
+
+=item SBOM::CycloneDX::Note
+
+=item SBOM::CycloneDX::OrganizationalContact
+
+=item SBOM::CycloneDX::OrganizationalEntity
+
+=item SBOM::CycloneDX::PostalAddress
+
+=item SBOM::CycloneDX::Property
+
+=item SBOM::CycloneDX::ReleaseNotes
+
+=item SBOM::CycloneDX::Schema
+
+=item SBOM::CycloneDX::Service
+
+=item SBOM::CycloneDX::Standard
+
+=item SBOM::CycloneDX::Standard::Level
+
+=item SBOM::CycloneDX::Standard::Requirement
+
+=item SBOM::CycloneDX::Tool
+
+=item SBOM::CycloneDX::Tools
+
+=item SBOM::CycloneDX::Version
+
+=item SBOM::CycloneDX::Vulnerability
+
+=item SBOM::CycloneDX::Vulnerability::Affect
+
+=item SBOM::CycloneDX::Vulnerability::Analysis
+
+=item SBOM::CycloneDX::Vulnerability::Credits
+
+=item SBOM::CycloneDX::Vulnerability::ProofOfConcept
+
+=item SBOM::CycloneDX::Vulnerability::Rating
+
+=item SBOM::CycloneDX::Vulnerability::Reference
+
+=item SBOM::CycloneDX::Vulnerability::Source
 
 =back
 
@@ -361,7 +513,6 @@ L<https://www.cyclonedx.org>
 =item L<SBOM::CycloneDX::Util>
 
 =back
-
 
 =head2 METHODS
 
