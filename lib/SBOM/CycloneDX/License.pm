@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use utf8;
 
+use SBOM::CycloneDX::BomRef;
 use SBOM::CycloneDX::List;
 use SBOM::CycloneDX::License::Licensing;
 
@@ -26,18 +27,25 @@ around BUILDARGS => sub {
     return $class->$orig(@args);
 };
 
+extends 'SBOM::CycloneDX::Base';
+
 sub BUILD {
     my ($self, $args) = @_;
     Carp::croak('"id" and "name" cannot be used at the same time') if exists $args->{id} && exists $args->{name};
 }
 
-has bom_ref         => (is => 'rw', isa => Str);
-has id              => (is => 'rw', isa => Str, trigger => 1);
+has bom_ref => (
+    is     => 'rw',
+    isa    => InstanceOf ['SBOM::CycloneDX::BomRef'],
+    coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
+);
+
+has id              => (is => 'rw', isa => Str);
 has name            => (is => 'rw', isa => Str);
 has acknowledgement => (is => 'rw', isa => Enum [qw(declared concluded)]);
 has text            => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::Attachment']);
-has url             => (is => 'rw', isa => Str);
-has expression      => (is => 'rw', isa => Str);                                          # TODO check SPDX expression
+has url             => (is => 'rw', isa => Str, trigger => 1);
+has expression      => (is => 'rw', isa => Str);    # TODO check SPDX expression
 
 has licensing => (
     is      => 'rw',
@@ -51,9 +59,10 @@ has properties => (
     default => sub { SBOM::CycloneDX::List->new }
 );
 
-sub _trigger_id {
+
+sub _trigger_url {
     my ($self) = @_;
-    $self->url('https://opensource.org/license/' . $self->id) unless $self->url;
+    $self->url('https://opensource.org/license/' . $self->id) if $self->url eq '1';
 }
 
 sub TO_JSON {
@@ -74,9 +83,6 @@ sub TO_JSON {
 
         if (defined $spdx_license and not first { $_ eq $spdx_license } SBOM::CycloneDX::Enum->SPDX_LICENSES) {
             DEBUG and say STDERR "-- SPDX license not found ($spdx_license)";
-
-            #$license_name = $spdx_license;
-            #$spdx_license = undef;
         }
 
         $json->{license} = {};
@@ -138,6 +144,9 @@ commercial licensing information, and the full text of the license.
 
 =head2 METHODS
 
+L<SBOM::CycloneDX::License> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
+
 =over
 
 =item SBOM::CycloneDX::License->new( $id | %PARAMS )
@@ -166,7 +175,8 @@ or proprietary license or an open source license that may not be defined by SPDX
 =item * C<text>, An optional way to include the textual content of a license.
 See L<SBOM::CycloneDX::Attachment>
 
-=item * C<url>, The URL to the license file.
+=item * C<url>, The URL to the license file. If C<1> is provided ,the license URL is
+automatically generated.
 
 =item * C<licensing>, Declared licenses and concluded licenses represent two different
 stages in the licensing process within software development. Declared licenses refer

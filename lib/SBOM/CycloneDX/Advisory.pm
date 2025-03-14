@@ -10,6 +10,8 @@ use Types::Standard qw(Str);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has title => (is => 'rw', isa => Str);
 has url => (is => 'rw', isa => Str, required => 1);
 
@@ -47,6 +49,9 @@ can be obtained. An advisory is a notification of a threat to a component,
 service, or system.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Advisory> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

@@ -12,6 +12,8 @@ use Types::Standard qw(Str InstanceOf);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has subject_name => (is => 'rw', isa => Str);
 has issuer_name  => (is => 'rw', isa => Str);
 
@@ -73,6 +75,9 @@ L<SBOM::CycloneDX::CryptoProperties::CertificateProperties> specifies the proper
 cryptographic assets of asset type 'certificate'.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::CryptoProperties::CertificateProperties> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

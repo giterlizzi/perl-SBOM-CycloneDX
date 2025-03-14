@@ -13,6 +13,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has statement => (is => 'rw', isa => Str);
 
 has signatories => (
@@ -62,6 +64,9 @@ authorized signatories who assert the validity of the document on behalf of
 the organization.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Declarations::Affirmation> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

@@ -13,6 +13,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has organizations => (
     is      => 'rw',
     isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::OrganizationalEntity']],
@@ -67,6 +69,9 @@ L<SBOM::CycloneDX::Declarations::Targets> provide the list of targets which clai
 are made against.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Declarations::Targets> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

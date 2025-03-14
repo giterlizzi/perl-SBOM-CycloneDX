@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use utf8;
 
+use SBOM::CycloneDX::BomRef;
 use SBOM::CycloneDX::List;
 
 use Types::Standard qw(Str Bool InstanceOf HashRef);
@@ -13,7 +14,14 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
-has bom_ref          => (is => 'rw', isa => Str);
+extends 'SBOM::CycloneDX::Base';
+
+has bom_ref => (
+    is     => 'rw',
+    isa    => InstanceOf ['SBOM::CycloneDX::BomRef'],
+    coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
+);
+
 has provider         => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::OrganizationalEntity']);
 has group            => (is => 'rw', isa => Str);
 has name             => (is => 'rw', isa => Str, required => 1);
@@ -105,6 +113,9 @@ behind the parent service. This is not a dependency tree. It provides a way to
 specify a hierarchical representation of service assemblies.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Service> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

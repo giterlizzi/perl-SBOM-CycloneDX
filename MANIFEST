@@ -5,6 +5,8 @@ lib/SBOM/CycloneDX/Advisory.pm
 lib/SBOM/CycloneDX/Annotation.pm
 lib/SBOM/CycloneDX/Annotation/Annotator.pm
 lib/SBOM/CycloneDX/Attachment.pm
+lib/SBOM/CycloneDX/Base.pm
+lib/SBOM/CycloneDX/BomRef.pm
 lib/SBOM/CycloneDX/Component.pm
 lib/SBOM/CycloneDX/Component/Commit.pm
 lib/SBOM/CycloneDX/Component/ConfidenceInterval.pm

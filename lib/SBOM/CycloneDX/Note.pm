@@ -10,6 +10,8 @@ use Types::Standard qw(StrMatch InstanceOf);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has locale => (is => 'rw', isa => StrMatch [qr{^([a-z]{2})(-[A-Z]{2})?$}]);
 has text => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::Attachment'], required => 1);
 
@@ -50,6 +52,9 @@ SBOM::CycloneDX::Note - A note containing the locale and content
 L<SBOM::CycloneDX::Note> provides a note containing the locale and content.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Note> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

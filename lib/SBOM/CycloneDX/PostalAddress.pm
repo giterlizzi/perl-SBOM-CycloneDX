@@ -5,12 +5,21 @@ use strict;
 use warnings;
 use utf8;
 
-use Types::Standard qw(Str);
+use SBOM::CycloneDX::BomRef;
+
+use Types::Standard qw(Str InstanceOf);
 
 use Moo;
 use namespace::autoclean;
 
-has bom_ref                => (is => 'rw', isa => Str);
+extends 'SBOM::CycloneDX::Base';
+
+has bom_ref => (
+    is     => 'rw',
+    isa    => InstanceOf ['SBOM::CycloneDX::BomRef'],
+    coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
+);
+
 has country                => (is => 'rw', isa => Str);
 has region                 => (is => 'rw', isa => Str);
 has locality               => (is => 'rw', isa => Str);
@@ -57,6 +66,9 @@ L<SBOM::CycloneDX::PostalAddress> provide an address used to identify a contacta
 location.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::PostalAddress> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

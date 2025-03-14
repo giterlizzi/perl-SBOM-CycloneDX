@@ -18,6 +18,7 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
 
 has alt_ids => (is => 'rw', isa => ArrayLike [Str], default => sub { SBOM::CycloneDX::List->new });
 
@@ -100,6 +101,9 @@ licensor/licensee, license type, renewal and expiration dates, and other
 important metadata
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::License::Licensing> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

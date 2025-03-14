@@ -14,6 +14,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has primitive                => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->CRYPTO_PRIMITIVES()]);
 has parameter_set_identifier => (is => 'rw', isa => Str);
 has curve                    => (is => 'rw', isa => Str);
@@ -82,6 +84,9 @@ L<SBOM::CycloneDX::CryptoProperties::AlgorithmProperties> specifies additional
 properties specific to a cryptographic algorithm.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::CryptoProperties::AlgorithmProperties> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

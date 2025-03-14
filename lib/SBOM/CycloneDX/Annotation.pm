@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use utf8;
 
+use SBOM::CycloneDX::BomRef;
 use SBOM::CycloneDX::List;
 use SBOM::CycloneDX::Timestamp;
 
@@ -14,8 +15,13 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
 
-has bom_ref => (is => 'rw', isa => Str);
+has bom_ref => (
+    is     => 'rw',
+    isa    => InstanceOf ['SBOM::CycloneDX::BomRef'],
+    coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
+);
 
 has subjects => (is => 'rw', isa => ArrayLike [Str], required => 1, default => sub { SBOM::CycloneDX::List->new });
 
@@ -76,6 +82,9 @@ A comment, note, explanation, or similar textual content which provides
 additional context to the object(s) being annotated.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Annotation> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

@@ -5,15 +5,23 @@ use strict;
 use warnings;
 use utf8;
 
-use Types::Standard qw(Str);
+use SBOM::CycloneDX::BomRef;
+use Types::Standard qw(Str InstanceOf);
 
 use Moo;
 use namespace::autoclean;
 
-has bom_ref => (is => 'rw', isa => Str);
-has name    => (is => 'rw', isa => Str);
-has email   => (is => 'rw', isa => Str);
-has phone   => (is => 'rw', isa => Str);
+extends 'SBOM::CycloneDX::Base';
+
+has bom_ref => (
+    is     => 'rw',
+    isa    => InstanceOf ['SBOM::CycloneDX::BomRef'],
+    coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
+);
+
+has name  => (is => 'rw', isa => Str);
+has email => (is => 'rw', isa => Str);
+has phone => (is => 'rw', isa => Str);
 
 sub TO_JSON {
 
@@ -50,6 +58,9 @@ SBOM::CycloneDX::OrganizationalContact - Organizational Contact
 L<SBOM::CycloneDX::OrganizationalContact> provides the organizational contact object.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::OrganizationalContact> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

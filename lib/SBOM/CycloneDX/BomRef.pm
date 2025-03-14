@@ -1,32 +1,31 @@
-package SBOM::CycloneDX::Component::Diff;
+package SBOM::CycloneDX::BomRef;
 
 use 5.010001;
 use strict;
 use warnings;
 use utf8;
 
-use Types::Standard qw(Str);
+use Carp;
+use Time::Piece;
+
+use overload '""' => \&to_string, fallback => 1;
 
 use Moo;
-use namespace::autoclean;
 
-extends 'SBOM::CycloneDX::Base';
+around BUILDARGS => sub {
 
-has text => (is => 'rw', isa => Str);
-has url  => (is => 'rw', isa => Str);
+    my ($orig, $class, @args) = @_;
 
-sub TO_JSON {
+    return {value => $args[0]} if @args == 1;
+    return $class->$orig(@args);
 
-    my $self = shift;
+};
 
-    my $json = {};
+has value => (is => 'rw', required => 1);
 
-    $json->{text} = $self->text if $self->text;
-    $json->{url}  = $self->url  if $self->url;
+sub to_string { shift->TO_JSON }
 
-    return $json;
-
-}
+sub TO_JSON { shift->value }
 
 1;
 
@@ -36,43 +35,32 @@ __END__
 
 =head1 NAME
 
-SBOM::CycloneDX::Component::Diff - Diff
+SBOM::CycloneDX::BomRef - BOM-ref representation for CycloneDX
 
 =head1 SYNOPSIS
 
-    SBOM::CycloneDX::Component::Diff->new();
+    $component->bom_ref(SBOM::CycloneDX::BomRef->new('app-component'));
 
 
 =head1 DESCRIPTION
 
-L<SBOM::CycloneDX::Component::Diff> provides the patch file (or diff) that shows
-changes. Refer to L<https://en.wikipedia.org/wiki/Diff>
+L<SBOM::CycloneDX::BomRef> represents the BOM reference in L<SBOM::CycloneDX>.
 
 =head2 METHODS
 
-L<SBOM::CycloneDX::Component::Diff> inherits all methods from L<SBOM::CycloneDX::Base>
-and implements the following new ones.
-
 =over
 
-=item SBOM::CycloneDX::Component::Diff->new( %PARAMS )
+=item SBOM::CycloneDX::BomRef->new( %PARAMS )
 
-Properties:
+=item $bom_ref->value
 
-=over
+=item $bom_ref->to_string
 
-=item C<text>, Specifies the optional text of the diff
+=item $bom_ref->TO_JSON
 
-=item C<url>, Specifies the URL to the diff
-
-=back
-
-=item $diff->text
-
-=item $diff->url
+Return BOM ref.
 
 =back
-
 
 =head1 SUPPORT
 

@@ -10,6 +10,8 @@ use Types::Standard qw(Str Enum InstanceOf);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 sub BUILD {
     my ($self, $args) = @_;
     Carp::croak('"version" and "range" cannot be used at the same time')
@@ -54,6 +56,9 @@ SBOM::CycloneDX::Version - Version
 L<SBOM::CycloneDX::Version> provide the version object.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Version> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

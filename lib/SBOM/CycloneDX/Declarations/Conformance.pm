@@ -13,6 +13,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has score                 => (is => 'rw', isa => Num);
 has rationale             => (is => 'rw', isa => Str);
 has mitigation_strategies => (is => 'rw', isa => ArrayLike [Str], default => sub { SBOM::CycloneDX::List->new });
@@ -53,6 +55,9 @@ L<SBOM::CycloneDX::Declarations::Conformance> provide the conformance of the cla
 meeting a requirement.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Declarations::Conformance> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

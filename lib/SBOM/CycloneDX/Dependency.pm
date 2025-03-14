@@ -5,15 +5,25 @@ use strict;
 use warnings;
 use utf8;
 
-use Types::Standard qw(Str);
+use Types::Standard qw(Str InstanceOf);
 use Types::TypeTiny qw(ArrayLike);
 
 use Moo;
 use namespace::autoclean;
 
-has ref        => (is => 'rw', isa => Str, required => 1);
-has depends_on => (is => 'rw', isa => ArrayLike [Str], default => sub { SBOM::CycloneDX::List->new });
-has provides   => (is => 'rw', isa => ArrayLike [Str], default => sub { SBOM::CycloneDX::List->new });
+extends 'SBOM::CycloneDX::Base';
+
+has ref => (is => 'rw', isa => Str | InstanceOf ['SBOM::CycloneDX::BomRef'], required => 1);
+has depends_on => (
+    is      => 'rw',
+    isa     => ArrayLike [Str | InstanceOf ['SBOM::CycloneDX::BomRef']],
+    default => sub { SBOM::CycloneDX::List->new }
+);
+has provides => (
+    is      => 'rw',
+    isa     => ArrayLike [Str | InstanceOf ['SBOM::CycloneDX::BomRef']],
+    default => sub { SBOM::CycloneDX::List->new }
+);
 
 sub TO_JSON {
 
@@ -55,6 +65,9 @@ opaque and not an indicator of an object being dependency-free. It is
 recommended to leverage compositions to indicate unknown dependency graphs.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Dependency> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

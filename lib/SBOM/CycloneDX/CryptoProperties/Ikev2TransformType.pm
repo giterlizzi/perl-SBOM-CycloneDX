@@ -13,6 +13,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 # bom-ref like
 has encr => (is => 'rw', isa => ArrayLike [Str], default => sub { SBOM::CycloneDX::List->new });
 
@@ -71,6 +73,9 @@ transform types supported (types 1-4), defined in RFC 7296 section 3.3.2
 (L<https://www.ietf.org/rfc/rfc7296.html#section-3.3.2>), and additional properties.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::CryptoProperties::Ikev2TransformType> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

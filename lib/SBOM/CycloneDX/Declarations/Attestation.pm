@@ -11,6 +11,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has summary   => (is => 'rw', isa => Str);
 has assessor  => (is => 'rw', isa => Str);                                                             # Like bom-ref
 has map       => (is => 'rw', isa => ArrayLike [InstanceOf ['SBOM::CycloneDX::Declarations::Map']]);
@@ -50,6 +52,9 @@ L<SBOM::CycloneDX::Declarations::Attestation> provides the attestation asserted
 by an assessor that maps requirements to claims.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Declarations::Attestation> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

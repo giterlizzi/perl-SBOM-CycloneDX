@@ -10,6 +10,8 @@ use Types::Standard qw(Str);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has tag_id      => (is => 'rw', isa => Str, required => 1);
 has name        => (is => 'rw', isa => Str, required => 1);
 has version     => (is => 'rw', isa => Str);
@@ -56,6 +58,9 @@ L<SBOM::CycloneDX::Component::SWID> specifies metadata and content for
 ISO-IEC 19770-2 Software Identification (SWID) Tags.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Component::SWID> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

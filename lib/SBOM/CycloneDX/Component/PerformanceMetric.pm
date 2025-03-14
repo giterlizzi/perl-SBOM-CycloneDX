@@ -13,6 +13,7 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
 
 has type                => (is => 'rw', isa => Str);
 has value               => (is => 'rw', isa => Str);
@@ -57,6 +58,9 @@ metrics being reported. Examples may include accuracy, F1 score, precision,
 top-3 error rates, MSC, etc.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Component::PerformanceMetric> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

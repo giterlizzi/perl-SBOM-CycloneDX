@@ -13,6 +13,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has ancestors => (
     is      => 'rw',
     isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::Component']],
@@ -87,6 +89,9 @@ or anywhere in the middle. It also provides a way to document variants
 where the exact relation may not be known.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Component::Pedigree> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

@@ -11,6 +11,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has assessors => (
     is      => 'rw',
     isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::Declarations::Assessor']],
@@ -79,6 +81,9 @@ the conformance to standards. Each declaration may include attestations,
 claims, and evidence.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Declarations> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

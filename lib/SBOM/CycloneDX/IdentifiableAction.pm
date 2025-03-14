@@ -12,6 +12,8 @@ use Types::Standard qw(Str InstanceOf);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has timestamp => (
     is     => 'rw',
     isa    => InstanceOf ['SBOM::CycloneDX::Timestamp'],
@@ -55,6 +57,9 @@ SBOM::CycloneDX::IdentifiableAction - Identifiable Action
 L<SBOM::CycloneDX::IdentifiableAction> specifies an individual commit.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::IdentifiableAction> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

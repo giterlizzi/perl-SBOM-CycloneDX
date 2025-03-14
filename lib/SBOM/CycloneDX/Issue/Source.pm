@@ -10,6 +10,8 @@ use Types::Standard qw(Str);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has name => (is => 'rw', isa => Str);
 has url  => (is => 'rw', isa => Str);
 
@@ -52,6 +54,9 @@ SBOM::CycloneDX::Issue::Source - The source of the issue where it is documented
 L<SBOM::CycloneDX::Issue::Source> provides the source of the issue where it is documented.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Issue::Source> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

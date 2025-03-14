@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use utf8;
 
+use SBOM::CycloneDX::BomRef;
 use SBOM::CycloneDX::List;
 
 use Types::Standard qw(Str InstanceOf HashRef);
@@ -13,7 +14,13 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
-has bom_ref => (is => 'rw', isa => Str);
+extends 'SBOM::CycloneDX::Base';
+
+has bom_ref => (
+    is     => 'rw',
+    isa    => InstanceOf ['SBOM::CycloneDX::BomRef'],
+    coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
+);
 
 # Array of bom-ref
 has target => (is => 'rw', isa => ArrayLike [Str], default => sub { SBOM::CycloneDX::List->new });
@@ -79,6 +86,9 @@ SBOM::CycloneDX::Declarations::Claim - Claim
 L<SBOM::CycloneDX::Declarations::Claim> provides the claim object.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Declarations::Claim> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

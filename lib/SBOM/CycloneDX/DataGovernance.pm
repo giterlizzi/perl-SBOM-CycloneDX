@@ -13,6 +13,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has custodians => (
     is      => 'rw',
     isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::DataGovernanceResponsibleParty']],
@@ -68,6 +70,9 @@ insights into the individuals or entities responsible for managing,
 overseeing, and safeguarding the data throughout its lifecycle.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::DataGovernance> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

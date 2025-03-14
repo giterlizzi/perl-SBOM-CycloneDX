@@ -11,6 +11,7 @@ use Types::Standard qw(InstanceOf);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
 
 has organization => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::OrganizationalEntity']);
 has individual   => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::OrganizationalContact']);
@@ -59,6 +60,9 @@ L<SBOM::CycloneDX::Annotation::Annotator> provides the organization, person,
 component, or service which created the textual content of the annotation.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Annotation::Annotator> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

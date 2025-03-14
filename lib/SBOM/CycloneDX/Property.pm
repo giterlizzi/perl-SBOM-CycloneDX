@@ -10,8 +10,7 @@ use Types::Standard qw(Str);
 use Moo;
 use namespace::autoclean;
 
-
-use Data::Dumper;
+extends 'SBOM::CycloneDX::Base';
 
 has name => (is => 'rw', isa => Str, required => 1);
 has value => (is => 'rw', isa => Str);
@@ -60,6 +59,9 @@ Formal registration is optional. Each item of this array must be a Lightweight
 name-value pair object.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Property> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

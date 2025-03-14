@@ -14,6 +14,7 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
 
 has url     => (is => 'rw', isa => Str, required => 1);
 has comment => (is => 'rw', isa => Str);
@@ -61,6 +62,9 @@ included with the BOM. They may also establish specific relationships
 within or external to the BOM.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::ExternalReference> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

@@ -15,6 +15,8 @@ use Types::Standard qw(Str Enum InstanceOf);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has asset_type => (is => 'rw', isa => Enum [qw(algorithm certificate protocol related-crypto-material)], required => 1);
 
 has algorithm_properties => (
@@ -92,6 +94,9 @@ the algorithm variant. The presence of a weak cryptographic algorithm like
 SHA1 vs. HMAC-SHA1 also makes a difference.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::CryptoProperties> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

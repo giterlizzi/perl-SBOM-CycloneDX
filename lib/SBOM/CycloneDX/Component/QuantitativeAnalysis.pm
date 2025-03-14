@@ -13,6 +13,7 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
 
 has performance_metrics => (
     is      => 'rw',
@@ -57,6 +58,9 @@ L<SBOM::CycloneDX::Component::QuantitativeAnalysis> provides a quantitative
 analysis of the model.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Component::QuantitativeAnalysis> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

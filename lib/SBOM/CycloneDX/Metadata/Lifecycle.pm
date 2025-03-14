@@ -12,6 +12,8 @@ use Types::Standard qw(Enum Str);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 sub BUILD {
     my ($self, $args) = @_;
     Carp::croak('"phase" and "name" cannot be used at the same time') if exists $args->{phase} && exists $args->{name};
@@ -57,6 +59,9 @@ L<SBOM::CycloneDX::Metadata::Lifecycle> provides the product lifecycle(s) that
 this BOM represents.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Metadata::Lifecycle> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

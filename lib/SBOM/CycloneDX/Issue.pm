@@ -13,6 +13,7 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
 
 has type        => (is => 'rw', isa => Enum [qw(defect enhancement security)], required => 1);
 has id          => (is => 'rw', isa => Str);
@@ -64,6 +65,9 @@ SBOM::CycloneDX::Issue - An individual issue that has been resolved
 L<SBOM::CycloneDX::Issue> provides an individual issue that has been resolved.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Issue> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

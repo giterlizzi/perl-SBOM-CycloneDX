@@ -13,6 +13,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has mechanism => (is => 'rw', isa => Str);
 
 # bom-ref like
@@ -50,6 +52,9 @@ SBOM::CycloneDX::CryptoProperties::SecuredBy - The mechanism by which the crypto
 L<SBOM::CycloneDX::CryptoProperties::SecuredBy> specifies the mechanism by which the cryptographic asset is secured by.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::CryptoProperties::SecuredBy> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

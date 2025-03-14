@@ -12,6 +12,8 @@ use Types::Standard qw(Str InstanceOf);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has uid       => (is => 'rw', isa => Str);
 has url       => (is => 'rw', isa => Str);
 has author    => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::IdentifiableAction']);
@@ -54,6 +56,9 @@ SBOM::CycloneDX::Component::Commit - Commit
 L<SBOM::CycloneDX::Component::Commit> specifies an individual commit.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Component::Commit> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

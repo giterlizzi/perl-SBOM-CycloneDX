@@ -12,6 +12,8 @@ use Types::Standard qw(Enum StrMatch);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 my %ALGO_LENGTH = (
     'MD5'         => 32,
     'SHA-1'       => 40,
@@ -71,6 +73,9 @@ SBOM::CycloneDX::Hash - Hash
 L<SBOM::CycloneDX::Hash> provides the hash object.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Hash> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

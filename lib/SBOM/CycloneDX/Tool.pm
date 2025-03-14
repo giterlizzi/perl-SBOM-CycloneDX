@@ -13,6 +13,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has vendor  => (is => 'rw', isa => Str);
 has name    => (is => 'rw', isa => Str);
 has version => (is => 'rw', isa => Str);
@@ -66,6 +68,9 @@ SBOM::CycloneDX::Tool - Tool
 instead. Information about the automated or manual tool used
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Tool> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

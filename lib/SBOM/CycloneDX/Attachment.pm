@@ -13,6 +13,8 @@ use SBOM::CycloneDX::Util qw(file_read);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 my $BASE64_REGEXP = qr{^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$};
 
 has file         => (is => 'rw', isa      => FileHandle | Str);
@@ -107,6 +109,9 @@ L<SBOM::CycloneDX::Attachment> is a attachment utility.
 
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Attachment> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

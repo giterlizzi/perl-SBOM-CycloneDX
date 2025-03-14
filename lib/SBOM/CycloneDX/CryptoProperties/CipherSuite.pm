@@ -13,6 +13,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has name => (is => 'rw', isa => Str);
 
 # bom-ref like
@@ -56,6 +58,9 @@ L<SBOM::CycloneDX::CryptoProperties::CipherSuite> specifies the object
 representing a cipher suite.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::CryptoProperties::CipherSuite> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

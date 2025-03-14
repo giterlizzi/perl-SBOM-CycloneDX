@@ -16,6 +16,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 sub BUILD {
     my ($self, $args) = @_;
     Carp::carp '"manufacture" is deprecated from CycloneDX v1.6. '
@@ -106,6 +108,9 @@ SBOM::CycloneDX::Metadata - BOM Metadata
 L<SBOM::CycloneDX::Metadata> provides additional information about a BOM.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Metadata> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use utf8;
 
+use SBOM::CycloneDX::BomRef;
 use SBOM::CycloneDX::PostalAddress;
 use SBOM::CycloneDX::List;
 
@@ -14,8 +15,15 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
-has bom_ref => (is => 'rw', isa => Str);
-has name    => (is => 'rw', isa => Str);
+extends 'SBOM::CycloneDX::Base';
+
+has bom_ref => (
+    is     => 'rw',
+    isa    => InstanceOf ['SBOM::CycloneDX::BomRef'],
+    coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
+);
+
+has name => (is => 'rw', isa => Str);
 
 has address => (
     is      => 'rw',
@@ -67,6 +75,9 @@ SBOM::CycloneDX::OrganizationalEntity - Organizational Entity
 L<SBOM::CycloneDX::OrganizationalEntity> provides the organization entity object.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::OrganizationalEntity> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

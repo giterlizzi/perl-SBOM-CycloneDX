@@ -17,10 +17,11 @@ use SBOM::CycloneDX::Schema;
 use SBOM::CycloneDX::Util qw(urn_uuid);
 
 use List::Util qw(uniq);
-use Cpanel::JSON::XS;
 
 use Moo;
 use namespace::autoclean;
+
+extends 'SBOM::CycloneDX::Base';
 
 use constant JSON_SCHEMA_1_2 => 'http://cyclonedx.org/schema/bom-1.2b.schema.json';
 use constant JSON_SCHEMA_1_3 => 'http://cyclonedx.org/schema/bom-1.3a.schema.json';
@@ -28,9 +29,7 @@ use constant JSON_SCHEMA_1_4 => 'http://cyclonedx.org/schema/bom-1.4.schema.json
 use constant JSON_SCHEMA_1_5 => 'http://cyclonedx.org/schema/bom-1.5.schema.json';
 use constant JSON_SCHEMA_1_6 => 'http://cyclonedx.org/schema/bom-1.6.schema.json';
 
-use overload '""' => \&to_string, fallback => 1;
-
-our $VERSION = 1.01;
+our $VERSION = 1.02;
 
 our %JSON_SCHEMA = (
     '1.2' => JSON_SCHEMA_1_2,
@@ -195,24 +194,6 @@ sub get_vulnerabilities_for_bom_ref {
 
 }
 
-sub to_string {
-
-    my $self = shift;
-
-    my $json = Cpanel::JSON::XS->new->utf8->canonical->allow_nonref->allow_unknown->allow_blessed->convert_blessed
-        ->stringify_infnan->escape_slash(0)->allow_dupkeys->pretty->space_before(0);
-
-    return $json->encode($self);
-
-}
-
-sub to_hash {
-
-    my $self = shift;
-    return Cpanel::JSON::XS->new->decode($self->to_string);
-
-}
-
 sub TO_JSON {
 
     my $self = shift;
@@ -369,9 +350,13 @@ L<https://www.cyclonedx.org>
 
 =over
 
+=item L<SBOM::CycloneDX::BomRef>
+
 =item L<SBOM::CycloneDX::Enum>
 
 =item L<SBOM::CycloneDX::List>
+
+=item L<SBOM::CycloneDX::Timestamp>
 
 =item L<SBOM::CycloneDX::Util>
 
@@ -379,6 +364,9 @@ L<https://www.cyclonedx.org>
 
 
 =head2 METHODS
+
+L<SBOM::CycloneDX> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

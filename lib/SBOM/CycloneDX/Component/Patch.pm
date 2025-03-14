@@ -13,6 +13,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has type     => (is => 'rw', isa => Enum [qw(unofficial monkey backport cherry-pick)]);
 has diff     => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::Component::Diff']);
 has resolves => (is => 'rw', isa => ArrayLike [InstanceOf ['SBOM::CycloneDX::Issue']]);
@@ -51,6 +53,9 @@ SBOM::CycloneDX::Component::Patch - Patch
 L<SBOM::CycloneDX::Component::Patch> specifies an individual patch
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Component::Patch> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

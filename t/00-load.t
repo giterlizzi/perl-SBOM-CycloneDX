@@ -5,12 +5,14 @@ use warnings;
 
 use Test::More;
 
-my @module = (qw[
+my @modules = (qw[
     SBOM::CycloneDX
     SBOM::CycloneDX::Advisory
     SBOM::CycloneDX::Annotation
     SBOM::CycloneDX::Annotation::Annotator
     SBOM::CycloneDX::Attachment
+    SBOM::CycloneDX::Base
+    SBOM::CycloneDX::BomRef
     SBOM::CycloneDX::Component
     SBOM::CycloneDX::Component::Commit
     SBOM::CycloneDX::Component::ConfidenceInterval
@@ -89,7 +91,7 @@ my @module = (qw[
     SBOM::CycloneDX::Vulnerability::Source
 ]);
 
-for my $module (@module) {
+for my $module (@modules) {
     use_ok $module or BAIL_OUT "Can't load $module";
 }
 

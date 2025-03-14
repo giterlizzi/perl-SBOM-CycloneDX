@@ -12,6 +12,8 @@ use Types::Standard qw(Str Num);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has score     => (is => 'rw', isa => Num);
 has rationale => (is => 'rw', isa => Str);
 
@@ -49,6 +51,9 @@ L<SBOM::CycloneDX::Declarations::Confidence> provide the confidence of the claim
 meeting the requirement.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Declarations::Confidence> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

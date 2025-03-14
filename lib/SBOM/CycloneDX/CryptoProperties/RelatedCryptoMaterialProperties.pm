@@ -14,6 +14,7 @@ use Types::Standard qw(Str Enum Num InstanceOf);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
 
 has type  => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->RELATED_CRYPTO_MATERIAL_TYPES()]);
 has id    => (is => 'rw', isa => Str);
@@ -99,6 +100,9 @@ L<SBOM::CycloneDX::CryptoProperties::RelatedCryptoMaterialProperties> specifies
 properties for cryptographic assets of asset type: "related-crypto-material".
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::CryptoProperties::RelatedCryptoMaterialProperties> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

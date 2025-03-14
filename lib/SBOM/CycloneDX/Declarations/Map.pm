@@ -13,6 +13,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 # Like bom-ref
 has requirement => (is => 'rw', isa => Str);
 
@@ -63,6 +65,9 @@ L<SBOM::CycloneDX::Declarations::Map> provide the groupg of requirements to
 claims and the attestors declared conformance and confidence thereof.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Declarations::Map> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

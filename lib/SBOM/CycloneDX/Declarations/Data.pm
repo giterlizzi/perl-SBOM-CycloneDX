@@ -13,6 +13,7 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
 
 has name           => (is => 'rw', isa => Str);
 has contents       => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::Declarations::Contents']);
@@ -58,6 +59,9 @@ L<SBOM::CycloneDX::Declarations::Data> provides the output or analysis that
 supports claims.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Declarations::Data> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

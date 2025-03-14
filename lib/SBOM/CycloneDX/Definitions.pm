@@ -13,6 +13,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has standards => (
     is      => 'rw',
     isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::Standard']],
@@ -50,6 +52,9 @@ L<SBOM::CycloneDX::Definitions> is a collection of reusable objects that are
 defined and may be used elsewhere in the BOM.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Definitions> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

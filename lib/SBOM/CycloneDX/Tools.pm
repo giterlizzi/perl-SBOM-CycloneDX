@@ -13,6 +13,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has components => (
     is      => 'rw',
     isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::Component']],
@@ -61,6 +63,9 @@ L<SBOM::CycloneDX::Tools> is a "deprecated" module for generate the tool(s) used
 in the creation, enrichment, and validation of the BOM.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Tools> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

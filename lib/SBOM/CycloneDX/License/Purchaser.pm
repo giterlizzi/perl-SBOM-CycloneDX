@@ -35,6 +35,9 @@ purchased the license
 
 =head2 METHODS
 
+L<SBOM::CycloneDX::License::Purchaser> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
+
 =over
 
 =item SBOM::CycloneDX::License::Purchaser->new( %PARAMS )

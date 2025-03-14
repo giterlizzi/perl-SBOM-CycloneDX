@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use utf8;
 
+use SBOM::CycloneDX::BomRef;
 use SBOM::CycloneDX::List;
 
 use Types::Standard qw(Str InstanceOf);
@@ -13,7 +14,13 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
-has bom_ref => (is => 'rw', isa => Str);
+extends 'SBOM::CycloneDX::Base';
+
+has bom_ref => (
+    is     => 'rw',
+    isa    => InstanceOf ['SBOM::CycloneDX::BomRef'],
+    coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
+);
 
 has model_parameters => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::Component::ModelParameters']);
 
@@ -66,6 +73,9 @@ This object SHOULD be specified for any component of type
 types.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Component::ModelCard> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

@@ -5,7 +5,11 @@ use strict;
 use warnings;
 use utf8;
 
-use Exporter 'import';
+use Exporter qw(import);
+
+our @EXPORT = qw(
+    schema_path
+);
 
 use SBOM::CycloneDX;
 
@@ -86,6 +90,10 @@ Validate CycloneDX objects using JSON Schema.
 
 =item SBOM::CycloneDX::Schema->new(object => $object)
 
+=item $schema->sbom
+
+L<SBOM::CycloneDX> instance or HASH.
+
 =item $schema->validator
 
 Return L<JSON::Validator> object.
@@ -96,6 +104,15 @@ Validate and return the L<JSON::Validator> errors.
 
 =back
 
+=head2 FUNCTIONS
+
+=over
+
+=item schema_path
+
+Return the CycloneDX schema path.
+
+=back
 
 =head1 SUPPORT
 

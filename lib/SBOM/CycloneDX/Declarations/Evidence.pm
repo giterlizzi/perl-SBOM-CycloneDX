@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use utf8;
 
+use SBOM::CycloneDX::BomRef;
 use SBOM::CycloneDX::Timestamp;
 use SBOM::CycloneDX::Declarations::Data;
 
@@ -14,7 +15,14 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
-has bom_ref       => (is => 'rw', isa => Str);
+extends 'SBOM::CycloneDX::Base';
+
+has bom_ref => (
+    is     => 'rw',
+    isa    => InstanceOf ['SBOM::CycloneDX::BomRef'],
+    coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
+);
+
 has property_name => (is => 'rw', isa => Str);
 has description   => (is => 'rw', isa => Str);
 
@@ -80,6 +88,9 @@ SBOM::CycloneDX::Declarations::Evidence - Evidence
 L<SBOM::CycloneDX::Declarations::Evidence> provides the evidence object.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Declarations::Evidence> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

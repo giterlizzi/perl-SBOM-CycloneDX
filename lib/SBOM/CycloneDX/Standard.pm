@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use utf8;
 
+use SBOM::CycloneDX::BomRef;
 use SBOM::CycloneDX::List;
 
 use Types::Standard qw(Str InstanceOf HashRef);
@@ -13,8 +14,14 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
 
-has bom_ref     => (is => 'rw', isa => Str);
+has bom_ref => (
+    is     => 'rw',
+    isa    => InstanceOf ['SBOM::CycloneDX::BomRef'],
+    coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
+);
+
 has name        => (is => 'rw', isa => Str);
 has version     => (is => 'rw', isa => Str);
 has description => (is => 'rw', isa => Str);
@@ -82,6 +89,9 @@ standards, maturity models, best practices, or any other requirements which can
 be evaluated against or attested to.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Standard> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

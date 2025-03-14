@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use utf8;
 
+use SBOM::CycloneDX::BomRef;
 use SBOM::CycloneDX::List;
 use SBOM::CycloneDX::Enum;
 
@@ -21,9 +22,17 @@ around BUILDARGS => sub {
     return $class->$orig(@args);
 };
 
-has type         => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->COMPONENT_TYPES()], required => 1);
-has mime_type    => (is => 'rw', isa => StrMatch [qr{^[-+a-z0-9.]+/[-+a-z0-9.]+$}]);
-has bom_ref      => (is => 'rw', isa => Str);
+extends 'SBOM::CycloneDX::Base';
+
+has type => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->COMPONENT_TYPES()], required => 1);
+has mime_type => (is => 'rw', isa => StrMatch [qr{^[-+a-z0-9.]+/[-+a-z0-9.]+$}]);
+
+has bom_ref => (
+    is     => 'rw',
+    isa    => InstanceOf ['SBOM::CycloneDX::BomRef'],
+    coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
+);
+
 has supplier     => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::OrganizationalEntity']);
 has manufacturer => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::OrganizationalEntity']);
 
@@ -87,7 +96,9 @@ has properties => (
 );
 
 has tags => (is => 'rw', isa => ArrayLike [Str], default => sub { SBOM::CycloneDX::List->new });
+
 has signature => (is => 'rw', isa => HashRef);                                                                   # TODO
+
 
 sub _purl_parse {
 
@@ -161,6 +172,9 @@ SBOM::CycloneDX::Component - Component
 L<SBOM::CycloneDX::Component> 
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Component> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

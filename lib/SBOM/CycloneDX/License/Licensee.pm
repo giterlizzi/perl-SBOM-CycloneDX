@@ -13,6 +13,8 @@ use Types::Standard qw(InstanceOf);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 sub BUILD {
     my ($self, $args) = @_;
     Carp::croak('"organization" and "individual" cannot be used at the same time')
@@ -65,6 +67,9 @@ L<SBOM::CycloneDX::License::Licensee> provides the individual or organization fo
 which a license was granted to
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::License::Licensee> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

@@ -12,6 +12,8 @@ use Types::Standard qw(Str InstanceOf);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has attachment => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::Attachment']);
 has url        => (is => 'rw', isa => Str);
 
@@ -49,6 +51,9 @@ L<SBOM::CycloneDX::Declarations::Contents> provide the contents or references to
 the contents of the data being described.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Declarations::Contents> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

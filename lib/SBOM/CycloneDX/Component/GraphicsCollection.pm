@@ -13,6 +13,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has description => (is => 'rw', isa => Str);
 
 has collection => (
@@ -56,6 +58,9 @@ L<SBOM::CycloneDX::Component::GraphicsCollection> provides a collection of graph
 that represent various measurements.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Component::GraphicsCollection> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

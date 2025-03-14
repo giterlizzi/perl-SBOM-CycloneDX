@@ -13,6 +13,7 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
 
 has lower_bound => (is => 'rw', isa => Str);
 has upper_bound => (is => 'rw', isa => Str);
@@ -52,6 +53,9 @@ L<SBOM::CycloneDX::Component::ConfidenceInterval> The confidence interval
 of the metric.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Component::ConfidenceInterval> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

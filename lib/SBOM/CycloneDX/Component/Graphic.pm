@@ -10,6 +10,8 @@ use Types::Standard qw(Str InstanceOf);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has name  => (is => 'rw', isa => Str);
 has image => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::Attachment']);
 
@@ -46,6 +48,9 @@ SBOM::CycloneDX::Component::Graphic - Graphic
 L<SBOM::CycloneDX::Component::Graphic> provides the graphic object.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Component::Graphic> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

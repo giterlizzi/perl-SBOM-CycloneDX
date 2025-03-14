@@ -5,12 +5,21 @@ use strict;
 use warnings;
 use utf8;
 
+use SBOM::CycloneDX::BomRef;
+
 use Types::Standard qw(Str Bool InstanceOf);
 
 use Moo;
 use namespace::autoclean;
 
-has bom_ref      => (is => 'rw', isa => Str);
+extends 'SBOM::CycloneDX::Base';
+
+has bom_ref => (
+    is     => 'rw',
+    isa    => InstanceOf ['SBOM::CycloneDX::BomRef'],
+    coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
+);
+
 has third_party  => (is => 'rw', isa => Bool);
 has organization => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::OrganizationalEntity']);
 
@@ -50,6 +59,9 @@ claims and determines conformance to requirements and confidence in that
 assessment.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Declarations::Assessor> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

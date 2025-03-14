@@ -12,6 +12,8 @@ use Types::Standard qw(InstanceOf HashRef Str);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 sub BUILD {
     my ($self, $args) = @_;
 
@@ -69,6 +71,9 @@ L<SBOM::CycloneDX::Declarations::Signatory> provide the signatory authorized on
 behalf of an organization to assert validity of this document.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Declarations::Signatory> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

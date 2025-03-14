@@ -14,6 +14,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has type           => (is => 'rw', isa => Str, required => 1);
 has title          => (is => 'rw', isa => Str);
 has featured_image => (is => 'rw', isa => Str);    # URL
@@ -90,6 +92,9 @@ SBOM::CycloneDX::ReleaseNotes - Specifies optional release notes
 L<SBOM::CycloneDX::ReleaseNotes> provides the optional release notes.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::ReleaseNotes> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

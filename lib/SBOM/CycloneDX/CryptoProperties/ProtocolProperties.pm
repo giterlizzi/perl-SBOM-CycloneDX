@@ -14,6 +14,8 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 has type    => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->PROTOCOL_PROPERTIES_TYPES()]);
 has version => (is => 'rw', isa => Str);
 
@@ -65,6 +67,9 @@ L<SBOM::CycloneDX::CryptoProperties::ProtocolProperties> specifies properties sp
 to cryptographic assets of type: "protocol".
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::CryptoProperties::ProtocolProperties> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

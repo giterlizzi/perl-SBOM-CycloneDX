@@ -10,6 +10,8 @@ use Types::Standard qw(InstanceOf);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
+
 sub BUILD {
     my ($self, $args) = @_;
     Carp::croak('"organization" and "contact" cannot be used at the same time')
@@ -53,6 +55,9 @@ L<SBOM::CycloneDX::DataGovernanceResponsibleParty> provides the data custodians
 are responsible for the safe custody, transport, and storage of data.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::DataGovernanceResponsibleParty> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

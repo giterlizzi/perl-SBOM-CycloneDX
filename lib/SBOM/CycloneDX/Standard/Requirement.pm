@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use utf8;
 
+use SBOM::CycloneDX::BomRef;
 use SBOM::CycloneDX::List;
 
 use Types::Standard qw(InstanceOf Str StrMatch);
@@ -13,8 +14,14 @@ use Types::TypeTiny qw(ArrayLike);
 use Moo;
 use namespace::autoclean;
 
+extends 'SBOM::CycloneDX::Base';
 
-has bom_ref    => (is => 'rw', isa => Str);
+has bom_ref => (
+    is     => 'rw',
+    isa    => InstanceOf ['SBOM::CycloneDX::BomRef'],
+    coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
+);
+
 has identifier => (is => 'rw', isa => Str);
 has title      => (is => 'rw', isa => Str);
 has text       => (is => 'rw', isa => Str);
@@ -81,6 +88,9 @@ SBOM::CycloneDX::Standard::Requirement - Requirement
 L<SBOM::CycloneDX::Standard::Requirement> provides the requirement comprising the standard.
 
 =head2 METHODS
+
+L<SBOM::CycloneDX::Standard::Requirement> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
 
 =over
 

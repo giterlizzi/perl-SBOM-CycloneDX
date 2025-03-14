@@ -35,6 +35,9 @@ grants a license to another individual or organization
 
 =head2 METHODS
 
+L<SBOM::CycloneDX::License::Licensor> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
+
 =over
 
 =item SBOM::CycloneDX::License::Licensor->new( %PARAMS )
