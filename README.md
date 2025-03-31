@@ -78,6 +78,7 @@ Using `App::cpanminus`:
 
 - `perldoc SBOM::CycloneDX`
 - https://metacpan.org/release/SBOM-CycloneDX
+- https://cyclonedx.org/
 
 ## Copyright
 
