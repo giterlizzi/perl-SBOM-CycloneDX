@@ -8,7 +8,8 @@ use utf8;
 use Exporter qw(import);
 
 our @EXPORT = qw(
-    schema_path
+    schema_dir
+    schema_file
 );
 
 use SBOM::CycloneDX;
@@ -29,9 +30,10 @@ our @JSON_SCHEMA_REGISTRY = (
     'spdx.schema.json',
 );
 
-has sbom => (is => 'ro', isa => InstanceOf ['SBOM::CycloneDX'] | HashRef, required => 1);
+has bom => (is => 'ro', isa => InstanceOf ['SBOM::CycloneDX'] | HashRef, required => 1);
 
-sub schema_path { catfile(dirname(__FILE__), 'schema') }
+sub schema_dir  { catfile(dirname(__FILE__), 'schema') }
+sub schema_file { catfile(schema_dir,        shift) }
 
 sub validator {
 
@@ -41,10 +43,10 @@ sub validator {
 
     foreach my $json_schema_file (@JSON_SCHEMA_REGISTRY) {
         DEBUG and say sprintf('-- Preload JSON Schema file %s', $json_schema_file);
-        $jv->store->load(catfile(schema_path, $json_schema_file));
+        $jv->store->load(schema_file($json_schema_file));
     }
 
-    my $spec_version          = (ref $self->sbom eq 'HASH') ? $self->sbom->{specVersion} : $self->sbom->spec_version;
+    my $spec_version          = (ref $self->bom eq 'HASH') ? $self->bom->{specVersion} : $self->bom->spec_version;
     my $cyclonedx_json_schema = $SBOM::CycloneDX::JSON_SCHEMA{$spec_version};
 
     DEBUG and say sprintf('-- Use %s JSON schema for validation', $cyclonedx_json_schema);
@@ -57,7 +59,7 @@ sub validator {
 
 sub validate {
     my ($self) = @_;
-    return $self->validator->validate($self->sbom);
+    return $self->validator->validate($self->bom);
 }
 
 
@@ -90,7 +92,7 @@ Validate CycloneDX objects using JSON Schema.
 
 =item SBOM::CycloneDX::Schema->new(object => $object)
 
-=item $schema->sbom
+=item $schema->bom
 
 L<SBOM::CycloneDX> instance or HASH.
 
@@ -108,9 +110,15 @@ Validate and return the L<JSON::Validator> errors.
 
 =over
 
-=item schema_path
+=item schema_dir
 
 Return the CycloneDX schema path.
+
+=item schema_file ($json_schema_file)
+
+Return the CycloneDX schema file path.
+
+    schema_file('bom-1.6.schema.json'); # ../SBOM/CycloneDX/schema/bom-1.6.schema.json
 
 =back
 

@@ -60,8 +60,6 @@ sub TO_JSON { shift->value->datetime . '.000Z' }
 
 1;
 
-__END__
-
 =encoding utf-8
 
 =head1 NAME
@@ -98,6 +96,8 @@ Return L<Time::Piece> object.
 =item $ts->TO_JSON
 
 Return timestamp in JSON format.
+
+=back
 
 =head1 SUPPORT
 

@@ -1,5 +1,9 @@
 Change history for SBOM::CycloneDX
 
+1.03 2025-03-31
+    - Improved documentation
+    - Improved SPDX licenses loader
+
 1.02 2025-03-14
     - Added "SBOM::CycloneDX::Base" class
     - Added "SBOM::CycloneDX::BomRef" class

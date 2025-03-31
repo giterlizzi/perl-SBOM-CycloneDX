@@ -29,7 +29,7 @@ use constant JSON_SCHEMA_1_4 => 'http://cyclonedx.org/schema/bom-1.4.schema.json
 use constant JSON_SCHEMA_1_5 => 'http://cyclonedx.org/schema/bom-1.5.schema.json';
 use constant JSON_SCHEMA_1_6 => 'http://cyclonedx.org/schema/bom-1.6.schema.json';
 
-our $VERSION = 1.02;
+our $VERSION = 1.03;
 
 our %JSON_SCHEMA = (
     '1.2' => JSON_SCHEMA_1_2,
@@ -39,8 +39,8 @@ our %JSON_SCHEMA = (
     '1.6' => JSON_SCHEMA_1_6,
 );
 
-has bom_format   => (is => 'ro', isa => Str, required => 1, default => 'CycloneDX');
-has spec_version => (is => 'rw', isa => Num, required => 1, default => 1.6);
+has bom_format => (is => 'ro', isa => Str, required => 1, default => 'CycloneDX');
+has spec_version => (is => 'rw', isa => Num->where(sub { defined $JSON_SCHEMA{$_} }), required => 1, default => 1.6);
 
 has serial_number => (
     is      => 'rw',
@@ -123,7 +123,7 @@ has properties => (
 has signature => (is => 'rw', isa => HashRef, default => sub { {} });
 
 
-sub validate { SBOM::CycloneDX::Schema->new(sbom => shift)->validate }
+sub validate { SBOM::CycloneDX::Schema->new(bom => shift)->validate }
 
 sub add_dependency {
 
@@ -135,17 +135,18 @@ sub add_dependency {
     my $exists = 0;
 
     foreach my $dependency ($self->dependencies->each) {
-        if ($dependency->ref eq $target_ref) {
 
-            $exists = 1;
+        next unless $dependency->ref eq $target_ref;
 
-            # TODO
-            my @old_refs = @{$dependency->depends_on};
-            push @old_refs, @depends_on_refs;
-            my @new_refs = uniq(@old_refs);
+        $exists = 1;
 
-            $dependency->depends_on(\@new_refs);
-        }
+        # TODO
+        my @old_refs = @{$dependency->depends_on};
+        push @old_refs, @depends_on_refs;
+        my @new_refs = uniq(@old_refs);
+
+        $dependency->depends_on(\@new_refs);
+
     }
 
     if (not $exists) {
@@ -187,6 +188,24 @@ sub get_vulnerabilities_for_bom_ref {
     foreach my $vulnerability (@{$self->vulnerabilities}) {
         foreach my $affect (@{$vulnerability->affects}) {
             $list->add($vulnerability) if $affect->ref eq $bom_ref;
+        }
+    }
+
+    return $list;
+
+}
+
+sub get_affected_components_by_cve {
+
+    my ($self, $cve_id) = @_;
+
+    my $list = SBOM::CycloneDX::List->new;
+
+    foreach my $vulnerability (@{$self->vulnerabilities}) {
+        if ($vulnerability->id eq $cve_id) {
+            foreach my $affect (@{$vulnerability->affects}) {
+                $list->add($self->get_component_by_bom_ref($affect->ref));
+            }
         }
     }
 
@@ -342,159 +361,191 @@ L<https://www.cyclonedx.org>
 
 =over
 
-=item SBOM::CycloneDX
+=item L<SBOM::CycloneDX>
 
-=item SBOM::CycloneDX::Advisory
+=item L<SBOM::CycloneDX::Advisory>
 
-=item SBOM::CycloneDX::Annotation
+=item L<SBOM::CycloneDX::Annotation>
 
-=item SBOM::CycloneDX::Annotation::Annotator
+=over
 
-=item SBOM::CycloneDX::Attachment
+=item L<SBOM::CycloneDX::Annotation::Annotator>
 
-=item SBOM::CycloneDX::Component
+=back
 
-=item SBOM::CycloneDX::Component::Commit
+=item L<SBOM::CycloneDX::Attachment>
 
-=item SBOM::CycloneDX::Component::ConfidenceInterval
+=item L<SBOM::CycloneDX::Component>
 
-=item SBOM::CycloneDX::Component::Diff
+=over
 
-=item SBOM::CycloneDX::Component::Graphic
+=item L<SBOM::CycloneDX::Component::Commit>
 
-=item SBOM::CycloneDX::Component::GraphicsCollection
+=item L<SBOM::CycloneDX::Component::ConfidenceInterval>
 
-=item SBOM::CycloneDX::Component::ModelCard
+=item L<SBOM::CycloneDX::Component::Diff>
 
-=item SBOM::CycloneDX::Component::Patch
+=item L<SBOM::CycloneDX::Component::Graphic>
 
-=item SBOM::CycloneDX::Component::Pedigree
+=item L<SBOM::CycloneDX::Component::GraphicsCollection>
 
-=item SBOM::CycloneDX::Component::PerformanceMetric
+=item L<SBOM::CycloneDX::Component::ModelCard>
 
-=item SBOM::CycloneDX::Component::QuantitativeAnalysis
+=item L<SBOM::CycloneDX::Component::Patch>
 
-=item SBOM::CycloneDX::Component::SWID
+=item L<SBOM::CycloneDX::Component::Pedigree>
 
-=item SBOM::CycloneDX::CryptoProperties
+=item L<SBOM::CycloneDX::Component::PerformanceMetric>
 
-=item SBOM::CycloneDX::CryptoProperties::AlgorithmProperties
+=item L<SBOM::CycloneDX::Component::QuantitativeAnalysis>
 
-=item SBOM::CycloneDX::CryptoProperties::CertificateProperties
+=item L<SBOM::CycloneDX::Component::SWID>
 
-=item SBOM::CycloneDX::CryptoProperties::CipherSuite
+=back
 
-=item SBOM::CycloneDX::CryptoProperties::Ikev2TransformType
+=item L<SBOM::CycloneDX::CryptoProperties>
 
-=item SBOM::CycloneDX::CryptoProperties::ProtocolProperties
+=over
 
-=item SBOM::CycloneDX::CryptoProperties::RelatedCryptoMaterialProperties
+=item L<SBOM::CycloneDX::CryptoProperties::AlgorithmProperties>
 
-=item SBOM::CycloneDX::CryptoProperties::SecuredBy
+=item L<SBOM::CycloneDX::CryptoProperties::CertificateProperties>
 
-=item SBOM::CycloneDX::DataGovernance
+=item L<SBOM::CycloneDX::CryptoProperties::CipherSuite>
 
-=item SBOM::CycloneDX::DataGovernanceResponsibleParty
+=item L<SBOM::CycloneDX::CryptoProperties::Ikev2TransformType>
 
-=item SBOM::CycloneDX::Declarations
+=item L<SBOM::CycloneDX::CryptoProperties::ProtocolProperties>
 
-=item SBOM::CycloneDX::Declarations::Affirmation
+=item L<SBOM::CycloneDX::CryptoProperties::RelatedCryptoMaterialProperties>
 
-=item SBOM::CycloneDX::Declarations::Assessor
+=item L<SBOM::CycloneDX::CryptoProperties::SecuredBy>
 
-=item SBOM::CycloneDX::Declarations::Attestation
+=back
 
-=item SBOM::CycloneDX::Declarations::Claim
+=item L<SBOM::CycloneDX::DataGovernance>
 
-=item SBOM::CycloneDX::Declarations::Confidence
+=item L<SBOM::CycloneDX::DataGovernanceResponsibleParty>
 
-=item SBOM::CycloneDX::Declarations::Conformance
+=item L<SBOM::CycloneDX::Declarations>
 
-=item SBOM::CycloneDX::Declarations::Contents
+=over
 
-=item SBOM::CycloneDX::Declarations::Data
+=item L<SBOM::CycloneDX::Declarations::Affirmation>
 
-=item SBOM::CycloneDX::Declarations::Evidence
+=item L<SBOM::CycloneDX::Declarations::Assessor>
 
-=item SBOM::CycloneDX::Declarations::Map
+=item L<SBOM::CycloneDX::Declarations::Attestation>
 
-=item SBOM::CycloneDX::Declarations::Signatory
+=item L<SBOM::CycloneDX::Declarations::Claim>
 
-=item SBOM::CycloneDX::Declarations::Targets
+=item L<SBOM::CycloneDX::Declarations::Confidence>
 
-=item SBOM::CycloneDX::Definitions
+=item L<SBOM::CycloneDX::Declarations::Conformance>
 
-=item SBOM::CycloneDX::Dependency
+=item L<SBOM::CycloneDX::Declarations::Contents>
 
-=item SBOM::CycloneDX::ExternalReference
+=item L<SBOM::CycloneDX::Declarations::Data>
 
-=item SBOM::CycloneDX::Formulation
+=item L<SBOM::CycloneDX::Declarations::Evidence>
 
-=item SBOM::CycloneDX::Hash
+=item L<SBOM::CycloneDX::Declarations::Map>
 
-=item SBOM::CycloneDX::IdentifiableAction
+=item L<SBOM::CycloneDX::Declarations::Signatory>
 
-=item SBOM::CycloneDX::Issue
+=item L<SBOM::CycloneDX::Declarations::Targets>
 
-=item SBOM::CycloneDX::Issue::Source
+=back
 
-=item SBOM::CycloneDX::License
+=item L<SBOM::CycloneDX::Definitions>
 
-=item SBOM::CycloneDX::License::Licensee
+=item L<SBOM::CycloneDX::Dependency>
 
-=item SBOM::CycloneDX::License::Licensing
+=item L<SBOM::CycloneDX::ExternalReference>
 
-=item SBOM::CycloneDX::License::Licensor
+=item L<SBOM::CycloneDX::Formulation>
 
-=item SBOM::CycloneDX::License::Purchaser
+=item L<SBOM::CycloneDX::Hash>
 
-=item SBOM::CycloneDX::Metadata
+=item L<SBOM::CycloneDX::IdentifiableAction>
 
-=item SBOM::CycloneDX::Metadata::Lifecycle
+=item L<SBOM::CycloneDX::Issue>
 
-=item SBOM::CycloneDX::Note
+=over
 
-=item SBOM::CycloneDX::OrganizationalContact
+=item L<SBOM::CycloneDX::Issue::Source>
 
-=item SBOM::CycloneDX::OrganizationalEntity
+=back
 
-=item SBOM::CycloneDX::PostalAddress
+=item L<SBOM::CycloneDX::License>
 
-=item SBOM::CycloneDX::Property
+=over
 
-=item SBOM::CycloneDX::ReleaseNotes
+=item L<SBOM::CycloneDX::License::Licensee>
 
-=item SBOM::CycloneDX::Schema
+=item L<SBOM::CycloneDX::License::Licensing>
 
-=item SBOM::CycloneDX::Service
+=item L<SBOM::CycloneDX::License::Licensor>
 
-=item SBOM::CycloneDX::Standard
+=item L<SBOM::CycloneDX::License::Purchaser>
 
-=item SBOM::CycloneDX::Standard::Level
+=back
 
-=item SBOM::CycloneDX::Standard::Requirement
+=item L<SBOM::CycloneDX::Metadata>
 
-=item SBOM::CycloneDX::Tool
+=item L<SBOM::CycloneDX::Metadata::Lifecycle>
 
-=item SBOM::CycloneDX::Tools
+=item L<SBOM::CycloneDX::Note>
 
-=item SBOM::CycloneDX::Version
+=item L<SBOM::CycloneDX::OrganizationalContact>
 
-=item SBOM::CycloneDX::Vulnerability
+=item L<SBOM::CycloneDX::OrganizationalEntity>
 
-=item SBOM::CycloneDX::Vulnerability::Affect
+=item L<SBOM::CycloneDX::PostalAddress>
 
-=item SBOM::CycloneDX::Vulnerability::Analysis
+=item L<SBOM::CycloneDX::Property>
 
-=item SBOM::CycloneDX::Vulnerability::Credits
+=item L<SBOM::CycloneDX::ReleaseNotes>
 
-=item SBOM::CycloneDX::Vulnerability::ProofOfConcept
+=item L<SBOM::CycloneDX::Schema>
 
-=item SBOM::CycloneDX::Vulnerability::Rating
+=item L<SBOM::CycloneDX::Service>
 
-=item SBOM::CycloneDX::Vulnerability::Reference
+=item L<SBOM::CycloneDX::Standard>
 
-=item SBOM::CycloneDX::Vulnerability::Source
+=over
+
+=item L<SBOM::CycloneDX::Standard::Level>
+
+=item L<SBOM::CycloneDX::Standard::Requirement>
+
+=back
+
+=item L<SBOM::CycloneDX::Tool>
+
+=item L<SBOM::CycloneDX::Tools>
+
+=item L<SBOM::CycloneDX::Version>
+
+=item L<SBOM::CycloneDX::Vulnerability>
+
+=over
+
+=item L<SBOM::CycloneDX::Vulnerability::Affect>
+
+=item L<SBOM::CycloneDX::Vulnerability::Analysis>
+
+=item L<SBOM::CycloneDX::Vulnerability::Credits>
+
+=item L<SBOM::CycloneDX::Vulnerability::ProofOfConcept>
+
+=item L<SBOM::CycloneDX::Vulnerability::Rating>
+
+=item L<SBOM::CycloneDX::Vulnerability::Reference>
+
+=item L<SBOM::CycloneDX::Vulnerability::Source>
+
+=back
 
 =back
 
@@ -664,14 +715,14 @@ Enveloped signature in JSON Signature Format (JSF) L<https://cyberphone.github.i
 
 =over
 
-=item $bom->add_dependency
+=item $bom->add_dependency($parent, [$components...])
 
 Adds a relationship between one or more components.
 
     $bom->add_dependency($parent_component, [$component1]);
     $bom->add_dependency($parent_component, [$component1, component2]);
 
-=item $bom->get_component_by_purl
+=item $bom->get_component_by_purl($purl)
 
 Return the component with specific PURL string.
 
@@ -679,7 +730,7 @@ Return the component with specific PURL string.
         say "Found component with $purl PURL";
     }
 
-=item $bom->get_component_by_bom_ref
+=item $bom->get_component_by_bom_ref($ref)
 
 Return the component with specific BOM-Ref string.
 
@@ -687,10 +738,15 @@ Return the component with specific BOM-Ref string.
         say "Found component with $bom_ref BOM-Ref";
     }
 
-=item $bom->get_vulnerabilities_for_bom_ref
+=item $bom->get_vulnerabilities_for_bom_ref($bom_ref)
 
 Return L<SBOM::CycloneDX::List> with a list of vulnerabilities with the same C<bom_ref>.
 
+=item $bom->get_affected_components_by_cve ($cve_id)
+
+Return L<SBOM::CycloneDX::List> with a list of components affected with the same C<cve_id>.
+
+    say $_->bom_ref for($bom->get_affected_components_by_cve('CVE-2025-1234')->list);
 
 =item $bom->validate
 

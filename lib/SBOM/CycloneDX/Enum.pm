@@ -5,16 +5,16 @@ use strict;
 use warnings;
 use utf8;
 
-use SBOM::CycloneDX::Schema qw(schema_path);
-use SBOM::CycloneDX::Util   qw(file_read);
+require SBOM::CycloneDX::Schema;
+require SBOM::CycloneDX::Util;
 
-use Cpanel::JSON::XS      qw(decode_json);
-use File::Spec::Functions qw(catfile);
+use Cpanel::JSON::XS qw(decode_json);
 
 state @LICENSES = ();
 
 unless (@LICENSES) {
-    my $spdx_json_schema = decode_json(file_read(catfile(schema_path, 'spdx.schema.json')));
+    my $spdx_json_schema_file = SBOM::CycloneDX::Schema::schema_file('spdx.schema.json');
+    my $spdx_json_schema      = decode_json(SBOM::CycloneDX::Util::file_read($spdx_json_schema_file));
     @LICENSES = @{$spdx_json_schema->{enum}};
 }
 
@@ -268,9 +268,6 @@ use constant PROTOCOL_PROPERTIES_TYPES => (qw[
 
 
 1;
-
-
-__END__
 
 =encoding utf-8
 

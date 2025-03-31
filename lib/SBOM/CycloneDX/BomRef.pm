@@ -29,8 +29,6 @@ sub TO_JSON { shift->value }
 
 1;
 
-__END__
-
 =encoding utf-8
 
 =head1 NAME

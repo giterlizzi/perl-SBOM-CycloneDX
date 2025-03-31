@@ -64,13 +64,8 @@ my %CPAN_META_SPEC_LICENSE_MAPPING = (
 #   unknown         License not provided in metadata
 
 
-sub urn_uuid {
-    return sprintf 'urn:uuid:%s', create_uuid_as_string(UUID_V4);
-}
-
-sub urn_cdx {
-    return sprintf 'urn:cdx:%s', create_uuid_as_string(UUID_V4);
-}
+sub urn_uuid { sprintf 'urn:uuid:%s', create_uuid_as_string(UUID_V4) }
+sub urn_cdx  { sprintf 'urn:cdx:%s',  create_uuid_as_string(UUID_V4) }
 
 sub cyclonedx_component {
 
@@ -99,52 +94,28 @@ sub cyclonedx_component {
 
 sub cyclonedx_tool {
 
-    my $tool = SBOM::CycloneDX::Tool->new(
+    SBOM::CycloneDX::Tool->new(
         vendor              => 'CPAN',
         name                => 'SBOM-CycloneDX',
         version             => sprintf('%s', $SBOM::CycloneDX::VERSION),
         external_references => _cyclonedx_external_references()
     );
 
-    return $tool;
-
 }
 
 sub _cyclonedx_external_references {
 
-    return [
-        SBOM::CycloneDX::ExternalReference->new(type => 'website', url => 'https://metacpan.org/pod/SBOM::CycloneDX',),
-        SBOM::CycloneDX::ExternalReference->new(
-            type => 'documentation',
-            url  => 'https://metacpan.org/dist/SBOM-CycloneDX'
-        ),
-        SBOM::CycloneDX::ExternalReference->new(
-            type => 'vcs',
-            url  => 'https://github.com/giterlizzi/perl-SBOM-CycloneDX'
-        ),
+    my @references = (
+        {type => 'website',       url => 'https://metacpan.org/pod/SBOM::CycloneDX'},
+        {type => 'documentation', url => 'https://metacpan.org/dist/SBOM-CycloneDX'},
+        {type => 'vcs',           url => 'https://github.com/giterlizzi/perl-SBOM-CycloneDX'},
+        {type => 'issue-tracker', url => 'https://github.com/giterlizzi/perl-SBOM-CycloneDX/issues'},
+        {type => 'license',       url => 'https://github.com/giterlizzi/perl-SBOM-CycloneDX/blob/main/LICENSE'},
+        {type => 'release-notes', url => 'https://github.com/giterlizzi/perl-SBOM-CycloneDX/blob/main/Changes'},
+        {type => 'distribution',  url => 'https://metacpan.org/dist/SBOM-CycloneDX'}
+    );
 
-        #SBOM::CycloneDX::ExternalReference->new(
-        #    type => 'build-system',
-        #    url  => 'https://github.com/giterlizzi/perl-SBOM-CycloneDX/actions'
-        #),
-
-        SBOM::CycloneDX::ExternalReference->new(
-            type => 'issue-tracker',
-            url  => 'https://github.com/giterlizzi/perl-SBOM-CycloneDX/issues'
-        ),
-        SBOM::CycloneDX::ExternalReference->new(
-            type => 'license',
-            url  => 'https://github.com/giterlizzi/perl-SBOM-CycloneDX/blob/main/LICENSE'
-        ),
-        SBOM::CycloneDX::ExternalReference->new(
-            type => 'release-notes',
-            url  => 'https://github.com/giterlizzi/perl-SBOM-CycloneDX/blob/main/Changes'
-        ),
-        SBOM::CycloneDX::ExternalReference->new(
-            type => 'distribution',
-            url  => 'https://metacpan.org/dist/SBOM-CycloneDX'
-        ),
-    ];
+    return [map { SBOM::CycloneDX::ExternalReference->new(%{$_}) } @references];
 
 }
 
@@ -190,8 +161,6 @@ sub file_write {
 
 
 1;
-
-__END__
 
 =encoding utf-8
 

@@ -81,7 +81,7 @@ sub TO_JSON {
         my $spdx_license = $self->id;
         my $license_name = $self->name;
 
-        if (defined $spdx_license and not first { $_ eq $spdx_license } SBOM::CycloneDX::Enum->SPDX_LICENSES) {
+        if (defined $spdx_license and not first { $_ eq $spdx_license } @{SBOM::CycloneDX::Enum->SPDX_LICENSES()}) {
             DEBUG and say STDERR "-- SPDX license not found ($spdx_license)";
         }
 
@@ -104,8 +104,6 @@ sub TO_JSON {
 }
 
 1;
-
-__END__
 
 =encoding utf-8
 
@@ -175,7 +173,7 @@ or proprietary license or an open source license that may not be defined by SPDX
 =item * C<text>, An optional way to include the textual content of a license.
 See L<SBOM::CycloneDX::Attachment>
 
-=item * C<url>, The URL to the license file. If C<1> is provided ,the license URL is
+=item * C<url>, The URL to the license file. If C<1> is provided, the license URL is
 automatically generated.
 
 =item * C<licensing>, Declared licenses and concluded licenses represent two different

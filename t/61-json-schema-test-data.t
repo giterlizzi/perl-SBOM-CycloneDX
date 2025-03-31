@@ -38,7 +38,7 @@ FILE: foreach my $file (@files) {
 
         my $bom_data = decode_json(file_read($file));
 
-        my $validator = SBOM::CycloneDX::Schema->new(sbom => $bom_data);
+        my $validator = SBOM::CycloneDX::Schema->new(bom => $bom_data);
 
         my @errors = $validator->validate;
 

@@ -33,9 +33,6 @@ sub to_hash {
 
 1;
 
-
-__END__
-
 =encoding utf-8
 
 =head1 NAME

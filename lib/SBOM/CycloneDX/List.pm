@@ -67,8 +67,6 @@ sub add { $_[0]->push(@_[1 .. $#_]) }
 
 1;
 
-__END__
-
 =encoding utf-8
 
 =head1 NAME
