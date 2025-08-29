@@ -1,5 +1,8 @@
 Change history for SBOM::CycloneDX
 
+1.0? 2025-??-??
+    - Fix name in Makefile.PL (giterlizzi/perl-SBOM-CycloneDX#2)
+
 1.03 2025-03-31
     - Improved documentation
     - Improved SPDX licenses loader
