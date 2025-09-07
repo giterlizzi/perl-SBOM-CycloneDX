@@ -1,6 +1,6 @@
 Change history for SBOM::CycloneDX
 
-1.0? 2025-??-??
+1.04 2025-09-07
     - Fix name in Makefile.PL (giterlizzi/perl-SBOM-CycloneDX#2)
     - Fix mapping of "perl_5" license with SPDX expression
       "Artistic-1.0-Perl OR GPL-1.0-or-later" (giterlizzi/perl-SBOM-CycloneDX#3)
