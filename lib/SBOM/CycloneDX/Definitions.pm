@@ -21,11 +21,20 @@ has standards => (
     default => sub { SBOM::CycloneDX::List->new }
 );
 
+has patents => (
+    is      => 'rw',
+    isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::Patents']],
+    default => sub { SBOM::CycloneDX::List->new }
+);
+
 sub TO_JSON {
 
     my $self = shift;
 
-    my $json = {standards => $self->standards};
+    my $json = {};
+
+    $json->{standards} = $self->standards if @{$self->standards};
+    $json->{patents}   = $self->patents   if @{$self->patents};
 
     return $json;
 
@@ -67,9 +76,13 @@ industry or organizational-specific standards, maturity models, best
 practices, or any other requirements which can be evaluated against or
 attested to.
 
+=item C<patents>, The list of patents which may be referenced elsewhere
+
 =back
 
 =item $definitions->standards
+
+=item $definitions->patents
 
 =back
 

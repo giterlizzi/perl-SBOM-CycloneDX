@@ -15,18 +15,20 @@ use namespace::autoclean;
 extends 'SBOM::CycloneDX::Base';
 
 my %ALGO_LENGTH = (
-    'MD5'         => 32,
-    'SHA-1'       => 40,
-    'SHA-256'     => 64,
-    'SHA-384'     => 96,
-    'SHA-512'     => 128,
-    'SHA3-256'    => 64,
-    'SHA3-384'    => 96,
-    'SHA3-512'    => 128,
-    'BLAKE2b-256' => 64,
-    'BLAKE2b-384' => 96,
-    'BLAKE2b-512' => 128,
-    'BLAKE3'      => 64,
+    'MD5'          => 32,
+    'SHA-1'        => 40,
+    'SHA-256'      => 64,
+    'SHA-384'      => 96,
+    'SHA-512'      => 128,
+    'SHA3-256'     => 64,
+    'SHA3-384'     => 96,
+    'SHA3-512'     => 128,
+    'BLAKE2b-256'  => 64,
+    'BLAKE2b-384'  => 96,
+    'BLAKE2b-512'  => 128,
+    'BLAKE3'       => 64,
+    'Streebog-256' => 64,
+    'Streebog-512' => 128,
 );
 
 has alg =>

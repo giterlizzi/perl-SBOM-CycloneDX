@@ -25,7 +25,6 @@ sub to_string {
 sub to_hash {
 
     my $self = shift;
-    say ref($self);
     my $json = $self->to_string;
     return Cpanel::JSON::XS->new->decode($json);
 

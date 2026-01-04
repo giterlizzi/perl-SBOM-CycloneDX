@@ -47,6 +47,12 @@ has text            => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::Attachm
 has url             => (is => 'rw', isa => Str, trigger => 1);
 has expression      => (is => 'rw', isa => Str);    # TODO check SPDX expression
 
+has expression_details => (
+    is      => 'rw',
+    isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::License::ExpressionDetail']],
+    default => sub { SBOM::CycloneDX::List->new }
+);
+
 has licensing => (
     is      => 'rw',
     isa     => InstanceOf ['SBOM::CycloneDX::License::Licensing'],
@@ -108,12 +114,13 @@ sub TO_JSON {
         $json->{license}->{id}   = $spdx_license if $spdx_license;
         $json->{license}->{name} = $license_name if $license_name;
 
-        $json->{license}->{'bom-ref'}       = $self->bom_ref         if $self->bom_ref;
-        $json->{license}->{acknowledgement} = $self->acknowledgement if $self->acknowledgement;
-        $json->{license}->{text}            = $self->text            if $self->text;
-        $json->{license}->{url}             = $self->url             if $self->url;
-        $json->{license}->{properties}      = $self->properties      if @{$self->properties};
-        $json->{license}->{licensing}       = $self->licensing       if %{$self->licensing->TO_JSON};
+        $json->{license}->{'bom-ref'}         = $self->bom_ref            if $self->bom_ref;
+        $json->{license}->{acknowledgement}   = $self->acknowledgement    if $self->acknowledgement;
+        $json->{license}->{text}              = $self->text               if $self->text;
+        $json->{license}->{url}               = $self->url                if $self->url;
+        $json->{license}->{properties}        = $self->properties         if @{$self->properties};
+        $json->{license}->{licensing}         = $self->licensing          if %{$self->licensing->TO_JSON};
+        $json->{license}->{expressionDetails} = $self->expression_details if @{$self->expression_details};
 
     }
 
@@ -171,7 +178,7 @@ Properties:
 
 =over
 
-=item * C<bom_ref>, An optional identifier which can be used to reference the license
+=item * C<bom_ref>, An identifier which can be used to reference the license
 elsewhere in the BOM. Every bom-ref must be unique within the BOM.
 
 Value SHOULD not start with the BOM-Link intro C<urn:cdx:> to avoid conflicts with BOM-Links.
@@ -183,12 +190,16 @@ one of the enumeration of valid SPDX license identifiers defined in L<SBOM::Cycl
 
 Refer to L<https://spdx.org/specifications> for syntax requirements.
 
+=item * C<expression_details>, Details for parts of the C<expression>.
+
+See L<SBOM::CycloneDX::License::ExpressionDetail>
+
 =item * C<name>, The name of the license. This may include the name of a commercial
 or proprietary license or an open source license that may not be defined by SPDX.
 
 =item * C<acknowledgement>, 
 
-=item * C<text>, An optional way to include the textual content of a license.
+=item * C<text>, An way to include the textual content of a license.
 See L<SBOM::CycloneDX::Attachment>
 
 =item * C<url>, The URL to the license file. If C<1> is provided, the license URL is
@@ -244,6 +255,8 @@ registration is optional. See L<SBOM::CycloneDX::Property>
 =item $license->url
 
 =item $license->expression
+
+=item $license->expression_details
 
 =item $license->licensing
 

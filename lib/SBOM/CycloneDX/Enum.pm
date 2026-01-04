@@ -79,6 +79,10 @@ use constant EXTERNAL_REFERENCE_TYPES => (qw[
     electronic-signature
     digital-signature
     rfc-9116
+    patent
+    patent-family
+    patent-assertion
+    citation
     other
 ]);
 
@@ -95,6 +99,8 @@ use constant HASH_ALGORITHMS => (qw[
     BLAKE2b-384
     BLAKE2b-512
     BLAKE3
+    Streebog-256
+    Streebog-512
 ]);
 
 use constant LIFECYCLE_PHASE => (qw[
@@ -140,6 +146,7 @@ use constant CRYPTO_PRIMITIVES => (qw[
     kem
     ae
     combiner
+    key-wrap
     other
     unknown
 ]);
@@ -262,10 +269,23 @@ use constant PROTOCOL_PROPERTIES_TYPES => (qw[
     ike
     sstp
     wpa
+    dtls
+    quic
+    eap-aka
+    eap-aka-prime
+    prins
+    5g-aka
     other
     unknown
 ]);
 
+use constant TLP_CLASSIFICATIONS => (qw[
+    CLEAR
+    GREEN
+    AMBER
+    AMBER_AND_STRICT
+    RED
+]);
 
 1;
 

@@ -53,7 +53,7 @@ sub TO_JSON {
 
 =head1 NAME
 
-SBOM::CycloneDX::Tool - Tool
+SBOM::CycloneDX::Tool - Tool (legacy, deprecated)
 
 =head1 SYNOPSIS
 

@@ -170,7 +170,7 @@ correctly interpret and process the content.
 
 =item $attachment->content
 
-Specifies the optional encoding the text is represented in.
+Specifies the encoding the text is represented in.
 
 =item $c->TO_JSON
 

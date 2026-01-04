@@ -28,8 +28,9 @@ use constant JSON_SCHEMA_1_3 => 'http://cyclonedx.org/schema/bom-1.3a.schema.jso
 use constant JSON_SCHEMA_1_4 => 'http://cyclonedx.org/schema/bom-1.4.schema.json';
 use constant JSON_SCHEMA_1_5 => 'http://cyclonedx.org/schema/bom-1.5.schema.json';
 use constant JSON_SCHEMA_1_6 => 'http://cyclonedx.org/schema/bom-1.6.schema.json';
+use constant JSON_SCHEMA_1_7 => 'http://cyclonedx.org/schema/bom-1.7.schema.json';
 
-our $VERSION = 1.05;
+our $VERSION = 1.05_1;
 
 our %JSON_SCHEMA = (
     '1.2' => JSON_SCHEMA_1_2,
@@ -37,10 +38,12 @@ our %JSON_SCHEMA = (
     '1.4' => JSON_SCHEMA_1_4,
     '1.5' => JSON_SCHEMA_1_5,
     '1.6' => JSON_SCHEMA_1_6,
+    '1.7' => JSON_SCHEMA_1_7,
 );
 
 has bom_format => (is => 'ro', isa => Str, required => 1, default => 'CycloneDX');
-has spec_version => (is => 'rw', isa => Num->where(sub { defined $JSON_SCHEMA{$_} }), required => 1, default => 1.6);
+
+has spec_version => (is => 'rw', isa => Num->where(sub { defined $JSON_SCHEMA{$_} }), required => 1, default => 1.7);
 
 has serial_number => (
     is      => 'rw',
@@ -111,6 +114,12 @@ has definitions => (
     is      => 'rw',
     isa     => InstanceOf ['SBOM::CycloneDX::Definitions'],
     default => sub { SBOM::CycloneDX::Definitions->new }
+);
+
+has citations => (
+    is      => 'rw',
+    isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::Citation']],
+    default => sub { SBOM::CycloneDX::List->new }
 );
 
 has properties => (
@@ -234,7 +243,8 @@ sub TO_JSON {
     $json->{annotations}        = $self->annotations         if @{$self->annotations};
     $json->{formulation}        = $self->formulation         if @{$self->formulation};
     $json->{declarations}       = $self->declarations        if %{$self->declarations->TO_JSON};
-    $json->{definitions}        = $self->definitions         if @{$self->definitions->standards};
+    $json->{definitions}        = $self->definitions         if %{$self->definitions->TO_JSON};
+    $json->{citations}          = $self->citations           if @{$self->citations};
     $json->{properties}         = $self->properties          if @{$self->properties};
     $json->{signature}          = $self->signature           if %{$self->signature};
 
@@ -375,6 +385,8 @@ L<https://www.cyclonedx.org>
 
 =item L<SBOM::CycloneDX::Attachment>
 
+=item L<SBOM::CycloneDX::Citations>
+
 =item L<SBOM::CycloneDX::Component>
 
 =over
@@ -481,6 +493,8 @@ L<https://www.cyclonedx.org>
 
 =over
 
+=item L<SBOM::CycloneDX::License::ExpressionDetail>
+
 =item L<SBOM::CycloneDX::License::Licensee>
 
 =item L<SBOM::CycloneDX::License::Licensing>
@@ -493,6 +507,8 @@ L<https://www.cyclonedx.org>
 
 =item L<SBOM::CycloneDX::Metadata>
 
+=item L<SBOM::CycloneDX::Metadata::DistributionConstraint>
+
 =item L<SBOM::CycloneDX::Metadata::Lifecycle>
 
 =item L<SBOM::CycloneDX::Note>
@@ -500,6 +516,8 @@ L<https://www.cyclonedx.org>
 =item L<SBOM::CycloneDX::OrganizationalContact>
 
 =item L<SBOM::CycloneDX::OrganizationalEntity>
+
+=item L<SBOM::CycloneDX::PatentAssertions>
 
 =item L<SBOM::CycloneDX::PostalAddress>
 
@@ -686,6 +704,15 @@ A collection of reusable objects that are defined and may be used
 elsewhere in the BOM.
 
     $bom->definitions->add($definition);
+
+See L<SBOM::CycloneDX::Definition>.
+
+=item $bom->citations
+
+A collection of attributions indicating which entity supplied
+information for specific fields within the BOM.
+
+    $bom->citations->add($citation);
 
 See L<SBOM::CycloneDX::Definition>.
 

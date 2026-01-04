@@ -74,7 +74,7 @@ Properties:
 
 =over
 
-=item C<bom_ref>, An optional identifier which can be used to reference the
+=item C<bom_ref>, An identifier which can be used to reference the
 object elsewhere in the BOM. Every bom-ref must be unique within the BOM.
 
 =item C<description>, The description of the level.

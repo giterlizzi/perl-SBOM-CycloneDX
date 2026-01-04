@@ -68,6 +68,12 @@ has properties => (
     default => sub { SBOM::CycloneDX::List->new }
 );
 
+has distribution_constraints => (
+    is      => 'rw',
+    isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::Metadata::DistributionConstraint']],
+    default => sub { SBOM::CycloneDX::List->new }
+);
+
 sub TO_JSON {
 
     my $self = shift;

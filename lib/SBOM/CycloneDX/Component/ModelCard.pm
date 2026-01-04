@@ -83,7 +83,7 @@ Properties:
 
 =over
 
-=item C<bom_ref>, An optional identifier which can be used to reference the
+=item C<bom_ref>, An identifier which can be used to reference the
 model card elsewhere in the BOM. Every bom-ref must be unique within the
 BOM.
 Value SHOULD not start with the BOM-Link intro 'urn:cdx:' to avoid

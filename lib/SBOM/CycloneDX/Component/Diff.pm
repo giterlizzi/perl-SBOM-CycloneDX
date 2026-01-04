@@ -59,7 +59,7 @@ Properties:
 
 =over
 
-=item C<text>, Specifies the optional text of the diff
+=item C<text>, Specifies the text of the diff
 
 =item C<url>, Specifies the URL to the diff
 

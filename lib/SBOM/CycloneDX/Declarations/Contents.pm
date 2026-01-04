@@ -61,7 +61,7 @@ Properties:
 
 =over
 
-=item C<attachment>, An optional way to include textual or encoded data.
+=item C<attachment>, A way to include textual or encoded data.
 
 =item C<url>, The URL to where the data can be retrieved.
 

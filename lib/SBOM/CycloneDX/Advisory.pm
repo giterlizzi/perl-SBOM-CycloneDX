@@ -59,7 +59,7 @@ Properties:
 
 =over
 
-=item C<title>, An optional name of the advisory.
+=item C<title>, A name of the advisory.
 
 =item C<url>, Location where the advisory can be obtained.
 

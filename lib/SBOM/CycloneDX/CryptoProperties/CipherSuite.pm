@@ -15,12 +15,11 @@ use namespace::autoclean;
 
 extends 'SBOM::CycloneDX::Base';
 
-has name => (is => 'rw', isa => Str);
-
-# bom-ref like
-has algorithms => (is => 'rw', isa => ArrayLike [Str], default => sub { SBOM::CycloneDX::List->new });
-
-has identifiers => (is => 'rw', isa => ArrayLike [Str], default => sub { SBOM::CycloneDX::List->new });
+has name                  => (is => 'rw', isa => Str);
+has algorithms            => (is => 'rw', isa => ArrayLike [Str], default => sub { SBOM::CycloneDX::List->new });
+has identifiers           => (is => 'rw', isa => ArrayLike [Str], default => sub { SBOM::CycloneDX::List->new });
+has tls_groups            => (is => 'rw', isa => ArrayLike [Str], default => sub { SBOM::CycloneDX::List->new });
+has tls_signature_schemes => (is => 'rw', isa => ArrayLike [Str], default => sub { SBOM::CycloneDX::List->new });
 
 sub TO_JSON {
 
@@ -28,9 +27,11 @@ sub TO_JSON {
 
     my $json = {};
 
-    $json->{name}        = $self->name        if $self->name;
-    $json->{algorithms}  = $self->algorithms  if @{$self->algorithms};
-    $json->{identifiers} = $self->identifiers if @{$self->identifiers};
+    $json->{name}                = $self->name                  if $self->name;
+    $json->{algorithms}          = $self->algorithms            if @{$self->algorithms};
+    $json->{identifiers}         = $self->identifiers           if @{$self->identifiers};
+    $json->{tlsGroups}           = $self->tls_groups            if @{$self->tls_groups};
+    $json->{tlsSignatureSchemes} = $self->tls_signature_schemes if @{$self->tls_signature_schemes};
 
     return $json;
 
@@ -74,6 +75,14 @@ Properties:
 
 =item C<name>, A common name for the cipher suite.
 
+=item C<tls_groups>, A list of TLS named groups (formerly known as curves) for
+this cipher suite. These groups define the parameters for key exchange algorithms
+like ECDHE.
+
+=item C<tls_signature_schemes>, A list of signature schemes supported for cipher
+suite. These schemes specify the algorithms used for digital signatures in TLS
+handshakes and certificate verification.
+
 =back
 
 =item $cipher_suite->algorithms
@@ -81,6 +90,10 @@ Properties:
 =item $cipher_suite->identifiers
 
 =item $cipher_suite->name
+
+=item $cipher_suite->tls_groups
+
+=item $cipher_suite->tls_signature_schemes
 
 =back
 

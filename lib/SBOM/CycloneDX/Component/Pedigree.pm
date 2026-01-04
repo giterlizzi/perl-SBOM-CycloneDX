@@ -119,7 +119,7 @@ root component.
 =item C<notes>, Notes, observations, and other non-structured commentary
 describing the components pedigree.
 
-=item C<patches>, >A list of zero or more patches describing how the
+=item C<patches>, A list of zero or more patches describing how the
 component deviates from an ancestor, descendant, or variant. Patches may be
 complementary to commits or may be used in place of commits.
 

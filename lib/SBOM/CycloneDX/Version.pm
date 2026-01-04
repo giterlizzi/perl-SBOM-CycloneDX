@@ -19,8 +19,17 @@ sub BUILD {
 }
 
 has version => (is => 'rw', isa => Str);
-has range   => (is => 'rw', isa => InstanceOf ['URI::VersionRange']);
+has range   => (is => 'rw', isa => InstanceOf ['URI::VersionRange'], coerce => sub { _vers_parse($_[0]) });
 has status  => (is => 'rw', isa => Enum [qw(affected unaffected unknown)]);
+
+sub _vers_parse {
+
+    my $vers = shift;
+
+    return $vers if (ref $vers eq 'URI::VersionRange');
+    return URI::VersionRange->from_string($vers);
+
+}
 
 sub TO_JSON {
 

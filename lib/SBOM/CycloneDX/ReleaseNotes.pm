@@ -76,7 +76,7 @@ sub TO_JSON {
 
 =head1 NAME
 
-SBOM::CycloneDX::ReleaseNotes - Specifies optional release notes
+SBOM::CycloneDX::ReleaseNotes - Specifies release notes
 
 =head1 SYNOPSIS
 
@@ -87,7 +87,7 @@ SBOM::CycloneDX::ReleaseNotes - Specifies optional release notes
 
 =head1 DESCRIPTION
 
-L<SBOM::CycloneDX::ReleaseNotes> provides the optional release notes.
+L<SBOM::CycloneDX::ReleaseNotes> provides the release notes.
 
 =head2 METHODS
 
