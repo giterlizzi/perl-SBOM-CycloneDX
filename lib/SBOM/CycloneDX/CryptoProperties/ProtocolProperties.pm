@@ -16,7 +16,7 @@ use namespace::autoclean;
 
 extends 'SBOM::CycloneDX::Base';
 
-has type    => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->PROTOCOL_PROPERTIES_TYPES()]);
+has type    => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->PROTOCOL_TYPES()]);
 has version => (is => 'rw', isa => Str);
 
 has cipher_suites => (
@@ -149,7 +149,7 @@ L<https://github.com/giterlizzi/perl-SBOM-CycloneDX>
 
 =head1 LICENSE AND COPYRIGHT
 
-This software is copyright (c) 2025 by Giuseppe Di Terlizzi.
+This software is copyright (c) 2025-2026 by Giuseppe Di Terlizzi.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

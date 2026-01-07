@@ -2,6 +2,8 @@ Change history for SBOM::CycloneDX
 
 1.0? 2026-01-??
     - Added support for CycloneDX 1.7 (https://cyclonedx.org/docs/1.7/json/)
+    - Added ENUM classes
+    - Improved documentations
 
 1.05 2025-09-30
     - Updating SPDX license list to 3.27.0
