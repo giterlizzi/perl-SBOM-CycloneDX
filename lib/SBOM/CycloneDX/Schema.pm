@@ -26,8 +26,8 @@ use constant DEBUG => $ENV{SBOM_DEBUG} || 0;
 
 our @JSON_SCHEMA_REGISTRY = (
     'bom-1.2-strict.schema.json', 'bom-1.2.schema.json', 'bom-1.3-strict.schema.json', 'bom-1.3.schema.json',
-    'bom-1.4.schema.json',        'bom-1.5.schema.json', 'bom-1.6.schema.json',        'jsf-0.82.schema.json',
-    'spdx.schema.json',
+    'bom-1.4.schema.json',        'bom-1.5.schema.json', 'bom-1.6.schema.json',        'bom-1.7.schema.json',
+    'jsf-0.82.schema.json',       'spdx.schema.json',    'cryptography-defs.schema.json'
 );
 
 has bom => (is => 'ro', isa => InstanceOf ['SBOM::CycloneDX'] | HashRef, required => 1);
@@ -75,7 +75,7 @@ SBOM::CycloneDX::Schema - JSON Schema Validator
 
     use SBOM::CycloneDX::Schema;
 
-    my $validator = SBOM::CycloneDX::Schema->new(sbom => $sbom);
+    my $validator = SBOM::CycloneDX::Schema->new(bom => sbom);
 
     my @errors = $validator->validate;
 
