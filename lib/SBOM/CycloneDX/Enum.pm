@@ -50,15 +50,14 @@ our @EXPORT_OK = qw(
     TLP_CLASSIFICATION
 );
 
-state @LICENSES;
-
-unless (@LICENSES) {
+state @SPDX_LICENSES = do {
     my $spdx_json_schema_file = SBOM::CycloneDX::Schema::schema_file('spdx.schema.json');
     my $spdx_json_schema      = decode_json(SBOM::CycloneDX::Util::file_read($spdx_json_schema_file));
-    @LICENSES = @{$spdx_json_schema->{enum}};
-}
 
-use constant SPDX_LICENSES => \@LICENSES;
+    @{$spdx_json_schema->{enum}};
+};
+
+use constant SPDX_LICENSES => \@SPDX_LICENSES;
 
 # LEGACY
 use constant COMMON_EXTENSION_NAMES          => SBOM::CycloneDX::Enum::CommonExtensionName->values();
