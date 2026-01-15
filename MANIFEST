@@ -1,4 +1,6 @@
 Changes
+examples/rpm-to-sbom.pl
+examples/x509-to-cbom.pl
 INSTALL.md
 lib/SBOM/CycloneDX.pm
 lib/SBOM/CycloneDX/Advisory.pm
@@ -27,6 +29,7 @@ lib/SBOM/CycloneDX/CryptoProperties/CertificateProperties.pm
 lib/SBOM/CycloneDX/CryptoProperties/CipherSuite.pm
 lib/SBOM/CycloneDX/CryptoProperties/Ikev2TransformType.pm
 lib/SBOM/CycloneDX/CryptoProperties/ProtocolProperties.pm
+lib/SBOM/CycloneDX/CryptoProperties/RelatedCryptographicAsset.pm
 lib/SBOM/CycloneDX/CryptoProperties/RelatedCryptoMaterialProperties.pm
 lib/SBOM/CycloneDX/CryptoProperties/SecuredBy.pm
 lib/SBOM/CycloneDX/DataGovernance.pm
@@ -77,6 +80,7 @@ lib/SBOM/CycloneDX/License/Licensing.pm
 lib/SBOM/CycloneDX/License/Licensor.pm
 lib/SBOM/CycloneDX/License/Purchaser.pm
 lib/SBOM/CycloneDX/List.pm
+lib/SBOM/CycloneDX/Lite.pm
 lib/SBOM/CycloneDX/Metadata.pm
 lib/SBOM/CycloneDX/Metadata/DistributionConstraint.pm
 lib/SBOM/CycloneDX/Metadata/Lifecycle.pm
