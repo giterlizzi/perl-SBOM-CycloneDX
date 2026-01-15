@@ -33,7 +33,7 @@ my @modules = (qw[
     SBOM::CycloneDX::CryptoProperties::CipherSuite
     SBOM::CycloneDX::CryptoProperties::Ikev2TransformType
     SBOM::CycloneDX::CryptoProperties::ProtocolProperties
-    SBOM::CycloneDX::CryptoProperties::RelatedCryptographicAsse
+    SBOM::CycloneDX::CryptoProperties::RelatedCryptographicAsset
     SBOM::CycloneDX::CryptoProperties::RelatedCryptoMaterialProperties
     SBOM::CycloneDX::CryptoProperties::SecuredBy
     SBOM::CycloneDX::DataGovernance
