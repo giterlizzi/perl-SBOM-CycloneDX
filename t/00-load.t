@@ -33,6 +33,7 @@ my @modules = (qw[
     SBOM::CycloneDX::CryptoProperties::CipherSuite
     SBOM::CycloneDX::CryptoProperties::Ikev2TransformType
     SBOM::CycloneDX::CryptoProperties::ProtocolProperties
+    SBOM::CycloneDX::CryptoProperties::RelatedCryptographicAsse
     SBOM::CycloneDX::CryptoProperties::RelatedCryptoMaterialProperties
     SBOM::CycloneDX::CryptoProperties::SecuredBy
     SBOM::CycloneDX::DataGovernance
@@ -83,6 +84,7 @@ my @modules = (qw[
     SBOM::CycloneDX::License::Licensor
     SBOM::CycloneDX::License::Purchaser
     SBOM::CycloneDX::List
+    SBOM::CycloneDX::Lite
     SBOM::CycloneDX::Metadata
     SBOM::CycloneDX::Metadata::DistributionConstraint
     SBOM::CycloneDX::Metadata::Lifecycle
