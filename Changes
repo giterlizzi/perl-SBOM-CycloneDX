@@ -3,6 +3,8 @@ Change history for SBOM::CycloneDX
 1.0? 2026-01-??
     - Added support for CycloneDX 1.7 (https://cyclonedx.org/docs/1.7/json/)
     - Added ENUM classes
+    - Added EXPERIMENTAL "SBOM::CycloneDX::Lite"
+    - Added examples ("x509-to-cbom.pl" and "rpm-to-sbom.pl")
     - Improved documentations
 
 1.05 2025-09-30
