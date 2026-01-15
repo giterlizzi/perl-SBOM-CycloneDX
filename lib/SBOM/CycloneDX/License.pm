@@ -22,9 +22,24 @@ use constant DEBUG => $ENV{SBOM_DEBUG} || 0;
 # TODO Incomplete
 
 around BUILDARGS => sub {
+
     my ($orig, $class, @args) = @_;
-    return {id => $args[0]} if @args == 1 && !ref $args[0];
+
+    if (@args == 1 && defined $args[0] && !ref $args[0]) {
+
+        my $license = $args[0];
+        $license =~ s/^\s+|\s+$//g;
+
+        if ($license =~ /(\bWITH\b|\bOR\b|\bAND\b)/i) {
+            return {expression => $license};
+        }
+        else {
+            return {id => $license};
+        }
+    }
+
     return $class->$orig(@args);
+
 };
 
 extends 'SBOM::CycloneDX::Base';
@@ -70,7 +85,7 @@ sub _trigger_id {
 
     my ($self) = @_;
 
-    if ($self->id && $self->id =~ /(WITH|AND|OR)/) {
+    if ($self->id && $self->id =~ /(\bWITH\b|\bOR\b|\bAND\b)/i) {
         DEBUG and say STDERR '-- Detected SPDX expression';
         $self->expression($self->id);
         $self->{id} = undef;
@@ -148,6 +163,15 @@ SBOM::CycloneDX::License - Specifies the details and attributes related to a sof
 
     $license = SBOM::CycloneDX::License->new('MIT');
 
+    # SPDX license expression
+
+    $license = SBOM::CycloneDX::License->new(
+        expression => 'MIT AND (LGPL-2.1-or-later OR BSD-3-Clause)'
+    );
+
+    # or
+
+    $license = SBOM::CycloneDX::License->new('MIT AND (LGPL-2.1-or-later OR BSD-3-Clause)');
 
     # Non-SPDX license
 
@@ -172,7 +196,7 @@ and implements the following new ones.
 
 =over
 
-=item SBOM::CycloneDX::License->new( $id | %PARAMS )
+=item SBOM::CycloneDX::License->new( $id | $expression | %PARAMS )
 
 Properties:
 
@@ -255,6 +279,16 @@ registration is optional. See L<SBOM::CycloneDX::Property>
 =item $license->url
 
 =item $license->expression
+
+    # SPDX license expression
+
+    $license = SBOM::CycloneDX::License->new(
+        expression => 'MIT AND (LGPL-2.1-or-later OR BSD-3-Clause)'
+    );
+
+    # or
+
+    $license = SBOM::CycloneDX::License->new('MIT AND (LGPL-2.1-or-later OR BSD-3-Clause)');
 
 =item $license->expression_details
 
