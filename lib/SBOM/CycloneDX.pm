@@ -30,7 +30,7 @@ use constant JSON_SCHEMA_1_5 => 'http://cyclonedx.org/schema/bom-1.5.schema.json
 use constant JSON_SCHEMA_1_6 => 'http://cyclonedx.org/schema/bom-1.6.schema.json';
 use constant JSON_SCHEMA_1_7 => 'http://cyclonedx.org/schema/bom-1.7.schema.json';
 
-our $VERSION = 1.05_2;
+our $VERSION = 1.05_3;
 
 our %JSON_SCHEMA = (
     '1.2' => JSON_SCHEMA_1_2,
@@ -38,7 +38,7 @@ our %JSON_SCHEMA = (
     '1.4' => JSON_SCHEMA_1_4,
     '1.5' => JSON_SCHEMA_1_5,
     '1.6' => JSON_SCHEMA_1_6,
-    '1.7' => JSON_SCHEMA_1_7,
+    '1.7' => JSON_SCHEMA_1_7
 );
 
 has bom_format => (is => 'ro', isa => Str, required => 1, default => 'CycloneDX');
@@ -325,7 +325,7 @@ SBOM::CycloneDX - CycloneDX Perl Library
 
 L<SBOM::CycloneDX> is a library for generate valid CycloneDX BOM file.
 
-CycloneDX is a modern standard for the software supply chain. At its core,
+CycloneDX (ECMA-424) is a modern standard for the software supply chain. At its core,
 CycloneDX is a general-purpose Bill of Materials (BOM) standard capable of
 representing software, hardware, services, and other types of inventory.
 The CycloneDX standard began in 2017 in the Open Worldwide Application Security
@@ -368,6 +368,8 @@ CycloneDX provides advanced supply chain capabilities for cyber risk reduction. 
 =back
 
 L<https://www.cyclonedx.org>
+
+L<https://ecma-international.org/publications-and-standards/standards/ecma-424/>
 
 
 L<SBOM::CycloneDX> implements the following versions of the CycloneDX specification:
@@ -452,6 +454,8 @@ This is the class hierarchy of the L<SBOM::CycloneDX> distribution.
 =item * L<SBOM::CycloneDX::CryptoProperties::Ikev2TransformType>
 
 =item * L<SBOM::CycloneDX::CryptoProperties::ProtocolProperties>
+
+=item * L<SBOM::CycloneDX::CryptoProperties::RelatedCryptographicAsset>
 
 =item * L<SBOM::CycloneDX::CryptoProperties::RelatedCryptoMaterialProperties>
 
