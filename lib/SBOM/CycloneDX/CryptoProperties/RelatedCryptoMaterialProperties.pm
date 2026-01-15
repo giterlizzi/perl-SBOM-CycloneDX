@@ -12,6 +12,7 @@ use SBOM::CycloneDX::Timestamp;
 use SBOM::CycloneDX::CryptoProperties::SecuredBy;
 
 use Types::Standard qw(Str Enum Num InstanceOf);
+use Types::TypeTiny qw(ArrayLike);
 
 use Moo;
 use namespace::autoclean;
@@ -22,7 +23,11 @@ has type  => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->RELATED_CRYPTO_MAT
 has id    => (is => 'rw', isa => Str);
 has state => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->RELATED_CRYPTO_MATERIAL_STATES()]);
 
-has algorithm_ref => (is => 'rw', isa => Str);    # Bom-ref like
+has algorithm_ref => (
+    is     => 'rw',
+    isa    => InstanceOf ['SBOM::CycloneDX::BomRef'],
+    coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
+);
 
 has creation_date => (
     is     => 'rw',
@@ -58,12 +63,11 @@ has secured_by => (
     default => sub { SBOM::CycloneDX::CryptoProperties::SecuredBy->new }
 );
 
-has fingerprint =>
-    (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::Hash'], default => sub { SBOM::CycloneDX::Hash->new });
+has fingerprint => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::Hash']);
 
 has related_cryptographic_assets => (
     is      => 'rw',
-    isa     => InstanceOf ['SBOM::CycloneDX::CryptoProperties::RelatedCryptographicAsset'],
+    isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::CryptoProperties::RelatedCryptographicAsset']],
     default => sub { SBOM::CycloneDX::List->new }
 );
 
@@ -85,7 +89,7 @@ sub TO_JSON {
     $json->{size}                       = $self->size                         if $self->size;
     $json->{format}                     = $self->format                       if $self->format;
     $json->{securedBy}                  = $self->secured_by                   if %{$self->secured_by->TO_JSON};
-    $json->{fingerprint}                = $self->fingerprint                  if %{$self->fingerprint->TO_JSON};
+    $json->{fingerprint}                = $self->fingerprint                  if $self->fingerprint;
     $json->{relatedCryptographicAssets} = $self->related_cryptographic_assets if @{$self->related_cryptographic_assets};
 
     return $json;

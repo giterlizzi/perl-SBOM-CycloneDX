@@ -27,7 +27,7 @@ has cipher_suites => (
 
 has related_cryptographic_assets => (
     is      => 'rw',
-    isa     => InstanceOf ['SBOM::CycloneDX::CryptoProperties::RelatedCryptographicAsset'],
+    isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::CryptoProperties::RelatedCryptographicAsset']],
     default => sub { SBOM::CycloneDX::List->new }
 );
 

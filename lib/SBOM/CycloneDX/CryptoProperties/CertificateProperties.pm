@@ -37,8 +37,7 @@ has certificate_format         => (is => 'rw', isa => Str);
 has certificate_extension      => (is => 'rw', isa => Str);    # [DEPRECATED 1.7]
 has certificate_file_extension => (is => 'rw', isa => Str);
 
-has fingerprint =>
-    (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::Hash'], default => sub { SBOM::CycloneDX::Hash->new });
+has fingerprint => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::Hash']);
 
 has certificate_state => (
     is      => 'rw',
@@ -84,7 +83,7 @@ has certificate_extensions => (
 
 has related_cryptographic_assets => (
     is      => 'rw',
-    isa     => InstanceOf ['SBOM::CycloneDX::CryptoProperties::RelatedCryptographicAsset'],
+    isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::CryptoProperties::RelatedCryptographicAsset']],
     default => sub { SBOM::CycloneDX::List->new }
 );
 
@@ -104,7 +103,7 @@ sub TO_JSON {
     $json->{certificateFormat}          = $self->certificate_format           if $self->certificate_format;
     $json->{certificateExtension}       = $self->certificate_extension        if $self->certificate_extension;
     $json->{certificateFileExtension}   = $self->certificate_file_extension   if $self->certificate_file_extension;
-    $json->{fingerprint}                = $self->fingerprint                  if %{$self->fingerprint}->TO_JSON;
+    $json->{fingerprint}                = $self->fingerprint                  if $self->fingerprint;
     $json->{certificateState}           = $self->certificate_state            if @{$self->certificate_state};
     $json->{creationDate}               = $self->creation_date                if $self->creation_date;
     $json->{activationDate}             = $self->activation_date              if $self->activation_date;
