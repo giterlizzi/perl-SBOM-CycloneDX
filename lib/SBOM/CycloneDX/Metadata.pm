@@ -38,6 +38,8 @@ has lifecycles => (
     default => sub { SBOM::CycloneDX::List->new }
 );
 
+# TODO: metadata.tools[] array is DEPRECATED
+
 has tools => (
     is      => 'rw',
     isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::Tool']] | InstanceOf ['SBOM::CycloneDX::Tools'],
@@ -80,9 +82,12 @@ sub TO_JSON {
 
     my $json = {};
 
+    if (ref ($self->tools) =~ /List/ && @{$self->tools} || ref($self->tools) =~ /Tools/) {
+        $json->{tools} = $self->tools;
+    }
+
     $json->{timestamp}   = $self->timestamp   if $self->timestamp;
     $json->{lifecycles}  = $self->lifecycles  if @{$self->lifecycles};
-    $json->{tools}       = $self->tools       if @{$self->tools};
     $json->{authors}     = $self->authors     if @{$self->authors};
     $json->{component}   = $self->component   if $self->component;
     $json->{manufacture} = $self->manufacture if $self->manufacture;
