@@ -63,6 +63,8 @@ lib/SBOM/CycloneDX/Enum/ExternalReferenceType.pm
 lib/SBOM/CycloneDX/Enum/HashAlgorithm.pm
 lib/SBOM/CycloneDX/Enum/LicenseType.pm
 lib/SBOM/CycloneDX/Enum/LifecyclePhase.pm
+lib/SBOM/CycloneDX/Enum/PatentAssertionType.pm
+lib/SBOM/CycloneDX/Enum/PatentLegalStatus.pm
 lib/SBOM/CycloneDX/Enum/ProtocolType.pm
 lib/SBOM/CycloneDX/Enum/RelatedCryptoMaterialState.pm
 lib/SBOM/CycloneDX/Enum/RelatedCryptoMaterialType.pm
@@ -87,6 +89,10 @@ lib/SBOM/CycloneDX/Metadata/Lifecycle.pm
 lib/SBOM/CycloneDX/Note.pm
 lib/SBOM/CycloneDX/OrganizationalContact.pm
 lib/SBOM/CycloneDX/OrganizationalEntity.pm
+lib/SBOM/CycloneDX/Patent.pm
+lib/SBOM/CycloneDX/Patent/PriorityApplication.pm
+lib/SBOM/CycloneDX/PatentAssertion.pm
+lib/SBOM/CycloneDX/PatentFamily.pm
 lib/SBOM/CycloneDX/PostalAddress.pm
 lib/SBOM/CycloneDX/Property.pm
 lib/SBOM/CycloneDX/ReleaseNotes.pm
@@ -136,7 +142,12 @@ t/50-valid-license-id-1.6.t
 t/50-valid-metadata-author-1.6.t
 t/50-valid-metadata-license-1.6.t
 t/50-valid-metadata-lifecycle-1.6.t
+t/50-valid-minimal-viable-1.2.t
+t/50-valid-minimal-viable-1.3.t
+t/50-valid-minimal-viable-1.4.t
+t/50-valid-minimal-viable-1.5.t
 t/50-valid-minimal-viable-1.6.t
+t/50-valid-minimal-viable-1.7.t
 t/60-json-schema.t
 t/61-json-schema-test-data.t
 t/lib/Test/CycloneDX.pm
