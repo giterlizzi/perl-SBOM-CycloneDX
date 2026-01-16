@@ -21,6 +21,8 @@ use SBOM::CycloneDX::Enum::ExternalReferenceType        ();
 use SBOM::CycloneDX::Enum::HashAlgorithm                ();
 use SBOM::CycloneDX::Enum::LicenseType                  ();
 use SBOM::CycloneDX::Enum::LifecyclePhase               ();
+use SBOM::CycloneDX::Enum::PatentAssertionType          ();
+use SBOM::CycloneDX::Enum::PatentLegalStatus            ();
 use SBOM::CycloneDX::Enum::ProtocolType                 ();
 use SBOM::CycloneDX::Enum::RelatedCryptoMaterialState   ();
 use SBOM::CycloneDX::Enum::RelatedCryptoMaterialType    ();
@@ -44,6 +46,8 @@ our @EXPORT_OK = qw(
     HASH_ALGORITHM
     LICENSE_TYPE
     LIFECYCLE_PHASE
+    PATENT_ASSERTION_TYPE
+    PATENT_LEGAL_STATUS
     PROTOCOL_TYPE
     RELATED_CRYPTO_MATERIAL_STATE
     RELATED_CRYPTO_MATERIAL_TYPE
@@ -73,6 +77,8 @@ use constant EXTERNAL_REFERENCE_TYPES        => SBOM::CycloneDX::Enum::ExternalR
 use constant HASH_ALGORITHMS                 => SBOM::CycloneDX::Enum::HashAlgorithm->values();
 use constant LICENSE_TYPES                   => SBOM::CycloneDX::Enum::LicenseType->values();
 use constant LIFECYCLE_PHASES                => SBOM::CycloneDX::Enum::LifecyclePhase->values();
+use constant PATENT_ASSERTION_TYPES          => SBOM::CycloneDX::Enum::PatentAssertionType->values();
+use constant PATENT_LEGAL_STATUSES           => SBOM::CycloneDX::Enum::PatentLegalStatus->values();
 use constant PROTOCOL_TYPES                  => SBOM::CycloneDX::Enum::ProtocolType->values();
 use constant RELATED_CRYPTO_MATERIAL_STATES  => SBOM::CycloneDX::Enum::RelatedCryptoMaterialState->values();
 use constant RELATED_CRYPTO_MATERIAL_TYPES   => SBOM::CycloneDX::Enum::RelatedCryptoMaterialType->values();
@@ -93,6 +99,8 @@ use constant {
     HASH_ALGORITHM                 => 'SBOM::CycloneDX::Enum::HashAlgorithm',
     LICENSE_TYPE                   => 'SBOM::CycloneDX::Enum::LicenseType',
     LIFECYCLE_PHASE                => 'SBOM::CycloneDX::Enum::LifecyclePhase',
+    PATENT_ASSERTION_TYPE          => 'SBOM::CycloneDX::Enum::PatentAssertionType',
+    PATENT_LEGAL_STATUS            => 'SBOM::CycloneDX::Enum::PatentLegalStatus',
     PROTOCOL_TYPE                  => 'SBOM::CycloneDX::Enum::ProtocolType',
     RELATED_CRYPTO_MATERIAL_STATE  => 'SBOM::CycloneDX::Enum::RelatedCryptoMaterialState',
     RELATED_CRYPTO_MATERIAL_TYPE   => 'SBOM::CycloneDX::Enum::RelatedCryptoMaterialType',
@@ -162,6 +170,10 @@ L<SBOM::CycloneDX::Enum> is internal class used by L<SBOM::CycloneDX>.
 =item * C<LICENSE_TYPE>, L<SBOM::CycloneDX::Enum::LicenseType>
 
 =item * C<LIFECYCLE_PHASE>, L<SBOM::CycloneDX::Enum::LifecyclePhase>
+
+=item * C<PATENT_ASSERTION_TYPE>, L<SBOM::CycloneDX::Enum::PatentAssertionType>
+
+=item * C<PATENT_LEGAL_STATUS>, L<SBOM::CycloneDX::Enum::PatentLegalStatus>
 
 =item * C<PROTOCOL_TYPE>, L<SBOM::CycloneDX::Enum::ProtocolType>
 

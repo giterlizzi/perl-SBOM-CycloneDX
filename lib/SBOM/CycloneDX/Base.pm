@@ -9,7 +9,7 @@ use Cpanel::JSON::XS;
 
 use overload '""' => \&to_string, fallback => 1;
 
-sub TO_JSON { }
+sub TO_JSON { Carp::croak 'TO_JSON is not extended by subclass' }
 
 sub to_string {
 

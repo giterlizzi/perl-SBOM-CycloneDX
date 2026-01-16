@@ -19,7 +19,7 @@ my $BASE64_REGEXP = qr{^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[
 
 has file         => (is => 'rw', isa      => FileHandle | Str);
 has content_type => (is => 'rw', isa      => Str);
-has encoding     => (is => 'rw', isa      => Enum [qw(base64)]);
+has encoding     => (is => 'rw', isa      => Enum [qw(base64)], default => 'base64');
 has content      => (is => 'rw', required => 1);
 
 sub TO_JSON {

@@ -69,11 +69,11 @@ Properties:
 
 =over
 
-=item C<description>, The name of the lifecycle phase.
+=item * C<description>, The name of the lifecycle phase.
 
-=item C<name>, The description of the lifecycle phase.
+=item * C<name>, The description of the lifecycle phase.
 
-=item C<phase>, A pre-defined phase in the product lifecycle.
+=item * C<phase>, A pre-defined phase in the product lifecycle.
 
 =back
 

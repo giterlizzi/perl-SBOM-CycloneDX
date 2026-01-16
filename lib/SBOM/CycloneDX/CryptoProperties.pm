@@ -105,24 +105,24 @@ Properties:
 
 =over
 
-=item C<algorithm_properties>, Additional properties specific to a
+=item * C<algorithm_properties>, Additional properties specific to a
 cryptographic algorithm.
 
-=item C<asset_type>, Cryptographic assets occur in several forms.
+=item * C<asset_type>, Cryptographic assets occur in several forms.
 Algorithms and protocols are most commonly implemented in specialized
 cryptographic libraries. They may, however, also be 'hardcoded' in software
 components. Certificates and related cryptographic material like keys,
 tokens, secrets or passwords are other cryptographic assets to be modelled.
 
-=item C<certificate_properties>, Properties for cryptographic assets of
+=item * C<certificate_properties>, Properties for cryptographic assets of
 asset type 'certificate'
 
-=item C<oid>, The object identifier (OID) of the cryptographic asset.
+=item * C<oid>, The object identifier (OID) of the cryptographic asset.
 
-=item C<protocol_properties>, Properties specific to cryptographic assets
+=item * C<protocol_properties>, Properties specific to cryptographic assets
 of type: `protocol`.
 
-=item C<related_crypto_material_properties>, Properties for cryptographic
+=item * C<related_crypto_material_properties>, Properties for cryptographic
 assets of asset type: `related-crypto-material`
 
 =back

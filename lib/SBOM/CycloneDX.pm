@@ -30,7 +30,7 @@ use constant JSON_SCHEMA_1_5 => 'http://cyclonedx.org/schema/bom-1.5.schema.json
 use constant JSON_SCHEMA_1_6 => 'http://cyclonedx.org/schema/bom-1.6.schema.json';
 use constant JSON_SCHEMA_1_7 => 'http://cyclonedx.org/schema/bom-1.7.schema.json';
 
-our $VERSION = 1.06;
+our $VERSION = 1.06_1;
 
 our %JSON_SCHEMA = (
     '1.2' => JSON_SCHEMA_1_2,
@@ -229,7 +229,11 @@ sub TO_JSON {
     my $spec_version = $self->spec_version;
     my $schema       = $JSON_SCHEMA{$spec_version};
 
-    my $json = {'$schema' => $schema, bomFormat => $self->bom_format, specVersion => "$spec_version"};
+    my $json = {bomFormat => $self->bom_format, specVersion => "$spec_version"};
+
+    if ($spec_version > 1.5) {
+        $json->{'$schema'} = $schema;
+    }
 
     $json->{serialNumber}       = $self->serial_number       if $self->serial_number;
     $json->{version}            = $self->version             if $self->version;
@@ -411,7 +415,7 @@ This is the class hierarchy of the L<SBOM::CycloneDX> distribution.
 
 =item * L<SBOM::CycloneDX::Attachment>
 
-=item * L<SBOM::CycloneDX::Citations>
+=item * L<SBOM::CycloneDX::Citation>
 
 =item * L<SBOM::CycloneDX::Component>
 
@@ -585,7 +589,17 @@ This is the class hierarchy of the L<SBOM::CycloneDX> distribution.
 
 =item * L<SBOM::CycloneDX::OrganizationalEntity>
 
-=item * L<SBOM::CycloneDX::PatentAssertions>
+=item * L<SBOM::CycloneDX::Patent>
+
+=over
+
+=item * L<SBOM::CycloneDX::Patent::PriorityApplication>
+
+=back
+
+=item * L<SBOM::CycloneDX::PatentAssertion>
+
+=item * L<SBOM::CycloneDX::PatentFamily>
 
 =item * L<SBOM::CycloneDX::PostalAddress>
 
@@ -780,7 +794,7 @@ information for specific fields within the BOM.
 
     $bom->citations->add($citation);
 
-See L<SBOM::CycloneDX::Definition>.
+See L<SBOM::CycloneDX::Citation>.
 
 =item $bom->properties
 

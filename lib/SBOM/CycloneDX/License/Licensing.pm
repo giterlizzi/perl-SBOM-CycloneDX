@@ -111,30 +111,30 @@ Properties:
 
 =over
 
-=item C<alt_ids>, License identifiers that may be used to manage licenses
+=item * C<alt_ids>, License identifiers that may be used to manage licenses
 and their lifecycle
 
-=item C<expiration>, The timestamp indicating when the current license
+=item * C<expiration>, The timestamp indicating when the current license
 expires (if applicable).
 
-=item C<last_renewal>, The timestamp indicating when the license was last
+=item * C<last_renewal>, The timestamp indicating when the license was last
 renewed. For new purchases, this is often the purchase or acquisition date.
 For non-perpetual licenses or subscriptions, this is the timestamp of when
 the license was last renewed.
 
-=item C<license_types>, The type of license(s) that was granted to the
+=item * C<license_types>, The type of license(s) that was granted to the
 licensee.
 
-=item C<licensee>, The individual or organization for which a license was
+=item * C<licensee>, The individual or organization for which a license was
 granted to
 
-=item C<licensor>, The individual or organization that grants a license to
+=item * C<licensor>, The individual or organization that grants a license to
 another individual or organization
 
-=item C<purchase_order>, The purchase order identifier the purchaser sent
+=item * C<purchase_order>, The purchase order identifier the purchaser sent
 to a supplier or vendor to authorize a purchase
 
-=item C<purchaser>, The individual or organization that purchased the
+=item * C<purchaser>, The individual or organization that purchased the
 license
 
 =back

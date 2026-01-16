@@ -56,6 +56,9 @@ information beyond the standard fields.
 
 =head2 METHODS
 
+L<SBOM::CycloneDX::CryptoProperties::CertificateExtension> inherits all methods from L<SBOM::CycloneDX::Base>
+and implements the following new ones.
+
 =over
 
 =item SBOM::CycloneDX::CryptoProperties::CertificateExtension->new( %PARAMS )
@@ -64,7 +67,7 @@ Properties:
 
 =over
 
-=item C<common_extension_name>, The name of the extension.
+=item * C<common_extension_name>, The name of the extension.
 
 =over
 
@@ -100,7 +103,7 @@ CA. Log ID, timestamp and signature as proof
 
 =back
 
-=item C<common_extension_value>, The value of the certificate extension.
+=item * C<common_extension_value>, The value of the certificate extension.
 
 =back
 
@@ -111,9 +114,9 @@ leverages properties to support this capability.
 
 =over
 
-=item C<custom_extension_name>, The name for the custom certificate extension.
+=item * C<custom_extension_name>, The name for the custom certificate extension.
 
-=item C<custom_extension_value>, The description of the custom certificate extension.
+=item * C<custom_extension_value>, The description of the custom certificate extension.
 
 =back
 

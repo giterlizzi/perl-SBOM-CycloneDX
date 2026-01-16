@@ -85,9 +85,9 @@ Properties:
 
 =over
 
-=item C<alg>, The algorithm that generated the hash value.
+=item * C<alg>, The algorithm that generated the hash value.
 
-=item C<content>, The value of the hash.
+=item * C<content>, The value of the hash.
 
 =back
 
