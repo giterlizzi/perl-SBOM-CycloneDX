@@ -3,7 +3,8 @@ Change history for SBOM::CycloneDX
 1.0? 2026-01-??
     - Improved support for CycloneDX 1.7 (https://cyclonedx.org/docs/1.7/json/)
     - Added "patent" and "patentFamily" support (CycloneDX 1.7)
-    - Fixed typos in documentations
+    - Improved documentations
+    - Improved ENUM classes
     - Remove '$schema' in CycloneDX < 1.5
     - Added new tests
 
