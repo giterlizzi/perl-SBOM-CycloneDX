@@ -68,28 +68,28 @@ Examples include ownership, licensing, and standards inclusion.
 
 =over
 
-=item * L<OWNERSHIP>, The manufacturer asserts ownership of the patent or
+=item * C<OWNERSHIP>, The manufacturer asserts ownership of the patent or
 patent family.
 
-=item * L<LICENSE>, The manufacturer asserts they have a license to use the
+=item * C<LICENSE>, The manufacturer asserts they have a license to use the
 patent or patent family.
 
-=item * L<THIRD_PARTY_CLAIM>, A third party has asserted a claim or
+=item * C<THIRD_PARTY_CLAIM>, A third party has asserted a claim or
 potential infringement against the manufacturer’s component or service.
 
-=item * L<STANDARDS_INCLUSION>, The patent is part of a standard essential
+=item * C<STANDARDS_INCLUSION>, The patent is part of a standard essential
 patent (SEP) portfolio relevant to the component or service.
 
-=item * L<PRIOR_ART>, The manufacturer asserts the patent or patent family
+=item * C<PRIOR_ART>, The manufacturer asserts the patent or patent family
 as prior art that invalidates another patent or claim.
 
-=item * L<EXCLUSIVE_RIGHTS>, The manufacturer asserts exclusive rights
+=item * C<EXCLUSIVE_RIGHTS>, The manufacturer asserts exclusive rights
 granted through a licensing agreement.
 
-=item * L<NON_ASSERTION>, The manufacturer asserts they will not enforce
+=item * C<NON_ASSERTION>, The manufacturer asserts they will not enforce
 the patent or patent family against certain uses or users.
 
-=item * L<RESEARCH_OR_EVALUATION>, The patent or patent family is being
+=item * C<RESEARCH_OR_EVALUATION>, The patent or patent family is being
 used under a research or evaluation license.
 
 =back

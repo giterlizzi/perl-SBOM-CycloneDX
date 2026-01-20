@@ -77,42 +77,42 @@ maintenance status.
 
 =over
 
-=item * L<PENDING>, The patent application has been filed but not yet
+=item * C<PENDING>, The patent application has been filed but not yet
 examined or granted.
 
-=item * L<GRANTED>, The patent application has been examined and a patent
+=item * C<GRANTED>, The patent application has been examined and a patent
 has been issued.
 
-=item * L<REVOKED>, The patent has been declared invalid through a legal or
+=item * C<REVOKED>, The patent has been declared invalid through a legal or
 administrative process.
 
-=item * L<EXPIRED>, The patent has reached the end of its enforceable term.
+=item * C<EXPIRED>, The patent has reached the end of its enforceable term.
 
-=item * L<LAPSED>, The patent is no longer in force due to non-payment of
+=item * C<LAPSED>, The patent is no longer in force due to non-payment of
 maintenance fees or other requirements.
 
-=item * L<WITHDRAWN>, The patent application was voluntarily withdrawn by
+=item * C<WITHDRAWN>, The patent application was voluntarily withdrawn by
 the applicant.
 
-=item * L<ABANDONED>, The patent application was abandoned, often due to
+=item * C<ABANDONED>, The patent application was abandoned, often due to
 lack of action or response.
 
-=item * L<SUSPENDED>, Processing of the patent application has been
+=item * C<SUSPENDED>, Processing of the patent application has been
 temporarily halted.
 
-=item * L<REINSTATED>, A previously abandoned or lapsed patent has been
+=item * C<REINSTATED>, A previously abandoned or lapsed patent has been
 reinstated.
 
-=item * L<OPPOSED>, The patent application or granted patent is under
+=item * C<OPPOSED>, The patent application or granted patent is under
 formal opposition proceedings.
 
-=item * L<TERMINATED>, The patent or application has been officially
+=item * C<TERMINATED>, The patent or application has been officially
 terminated.
 
-=item * L<INVALIDATED>, The patent has been invalidated, either in part or
+=item * C<INVALIDATED>, The patent has been invalidated, either in part or
 in full.
 
-=item * L<IN_FORCE>, The granted patent is active and enforceable.
+=item * C<IN_FORCE>, The granted patent is active and enforceable.
 
 =back
 
