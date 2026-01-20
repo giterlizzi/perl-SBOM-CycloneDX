@@ -61,6 +61,8 @@ lib/SBOM/CycloneDX/Enum/CryptoPadding.pm
 lib/SBOM/CycloneDX/Enum/CryptoPrimitive.pm
 lib/SBOM/CycloneDX/Enum/ExternalReferenceType.pm
 lib/SBOM/CycloneDX/Enum/HashAlgorithm.pm
+lib/SBOM/CycloneDX/Enum/ImpactAnalysisJustification.pm
+lib/SBOM/CycloneDX/Enum/ImpactAnalysisState.pm
 lib/SBOM/CycloneDX/Enum/LicenseType.pm
 lib/SBOM/CycloneDX/Enum/LifecyclePhase.pm
 lib/SBOM/CycloneDX/Enum/PatentAssertionType.pm
@@ -131,6 +133,7 @@ Makefile.PL
 MANIFEST			This list of files
 README.md
 t/00-load.t
+t/10-enum.t
 t/50-invalid-empty-component-1.6.t
 t/50-invalid-license-id-1.6.t
 t/50-invalid-license-missing-id-and-name-1.6.t
