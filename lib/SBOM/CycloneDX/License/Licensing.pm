@@ -5,12 +5,11 @@ use strict;
 use warnings;
 use utf8;
 
-use SBOM::CycloneDX::List;
 use SBOM::CycloneDX::Enum;
-
 use SBOM::CycloneDX::License::Licensee;
 use SBOM::CycloneDX::License::Licensor;
 use SBOM::CycloneDX::License::Purchaser;
+use SBOM::CycloneDX::List;
 
 use Types::Standard qw(Str Enum InstanceOf);
 use Types::TypeTiny qw(ArrayLike);
@@ -44,7 +43,7 @@ has purchase_order => (is => 'rw', isa => Str);
 
 has license_types => (
     is      => 'rw',
-    isa     => ArrayLike [Enum [SBOM::CycloneDX::Enum->LICENSE_TYPES()]],
+    isa     => ArrayLike [Enum [SBOM::CycloneDX::Enum->values('LICENSE_TYPE')]],
     default => sub { SBOM::CycloneDX::List->new }
 );
 

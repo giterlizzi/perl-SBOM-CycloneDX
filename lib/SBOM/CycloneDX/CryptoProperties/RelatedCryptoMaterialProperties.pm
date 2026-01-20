@@ -5,11 +5,11 @@ use strict;
 use warnings;
 use utf8;
 
+use SBOM::CycloneDX::CryptoProperties::SecuredBy;
 use SBOM::CycloneDX::Enum;
 use SBOM::CycloneDX::Hash;
 use SBOM::CycloneDX::List;
 use SBOM::CycloneDX::Timestamp;
-use SBOM::CycloneDX::CryptoProperties::SecuredBy;
 
 use Types::Standard qw(Str Enum Num InstanceOf);
 use Types::TypeTiny qw(ArrayLike);
@@ -19,9 +19,9 @@ use namespace::autoclean;
 
 extends 'SBOM::CycloneDX::Base';
 
-has type  => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->RELATED_CRYPTO_MATERIAL_TYPES()]);
+has type  => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->values('RELATED_CRYPTO_MATERIAL_TYPE')]);
 has id    => (is => 'rw', isa => Str);
-has state => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->RELATED_CRYPTO_MATERIAL_STATES()]);
+has state => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->values('RELATED_CRYPTO_MATERIAL_STATE')]);
 
 has algorithm_ref => (
     is     => 'rw',

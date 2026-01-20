@@ -5,9 +5,9 @@ use strict;
 use warnings;
 use utf8;
 
+use SBOM::CycloneDX::Enum;
 use SBOM::CycloneDX::Hash;
 use SBOM::CycloneDX::List;
-use SBOM::CycloneDX::Enum;
 
 use Types::Standard qw(Str Enum Num);
 use Types::TypeTiny qw(ArrayLike);
@@ -17,25 +17,26 @@ use namespace::autoclean;
 
 extends 'SBOM::CycloneDX::Base';
 
-has primitive                => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->CRYPTO_PRIMITIVES()]);
+has primitive                => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->values('CRYPTO_PRIMITIVE')]);
 has algorithm_family         => (is => 'rw', isa => Str);
 has parameter_set_identifier => (is => 'rw', isa => Str);
 has curve                    => (is => 'rw', isa => Str);
 has execution_environment    => (is => 'rw', isa => Str);
-has implementation_platform  => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->CRYPTO_IMPLEMENTATION_PLATFORMS()]);
+has implementation_platform =>
+    (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->values('CRYPTO_IMPLEMENTATION_PLATFORM')]);
 
 has certification_level => (
     is      => 'rw',
-    isa     => ArrayLike [Enum [SBOM::CycloneDX::Enum->CRYPTO_CERTIFICATION_LEVELS()]],
+    isa     => ArrayLike [Enum [SBOM::CycloneDX::Enum->values('CRYPTO_CERTIFICATION_LEVEL')]],
     default => sub { SBOM::CycloneDX::List->new }
 );
 
-has mode    => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->CRYPTO_MODES()]);
-has padding => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->CRYPTO_PADDINGS()]);
+has mode    => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->values('CRYPTO_MODE')]);
+has padding => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->values('CRYPTO_PADDING')]);
 
 has crypto_functions => (
     is      => 'rw',
-    isa     => ArrayLike [Enum [SBOM::CycloneDX::Enum->CRYPTO_FUNCTIONS()]],
+    isa     => ArrayLike [Enum [SBOM::CycloneDX::Enum->values('CRYPTO_FUNCTION')]],
     default => sub { SBOM::CycloneDX::List->new }
 );
 

@@ -20,7 +20,7 @@ sub BUILD {
     Carp::croak('"description" without "name"') if exists $args->{phase} && exists $args->{description};
 }
 
-has phase       => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->LIFECYCLE_PHASES()]);
+has phase       => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->values('LIFECYCLE_PHASE')]);
 has name        => (is => 'rw', isa => Str);
 has description => (is => 'rw', isa => Str);
 

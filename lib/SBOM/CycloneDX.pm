@@ -531,6 +531,10 @@ This is the class hierarchy of the L<SBOM::CycloneDX> distribution.
 
 =item * L<SBOM::CycloneDX::Enum::HashAlgorithm>
 
+=item * L<SBOM::CycloneDX::Enum::ImpactAnalysisJustification>
+
+=item * L<SBOM::CycloneDX::Enum::ImpactAnalysisState>
+
 =item * L<SBOM::CycloneDX::Enum::LicenseType>
 
 =item * L<SBOM::CycloneDX::Enum::LifecyclePhase>

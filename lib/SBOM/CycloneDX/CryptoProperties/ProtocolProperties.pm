@@ -16,7 +16,7 @@ use namespace::autoclean;
 
 extends 'SBOM::CycloneDX::Base';
 
-has type    => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->PROTOCOL_TYPES()]);
+has type    => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->values('PROTOCOL_TYPE')]);
 has version => (is => 'rw', isa => Str);
 
 has cipher_suites => (

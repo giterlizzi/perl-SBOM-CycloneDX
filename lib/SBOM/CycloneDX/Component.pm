@@ -6,8 +6,8 @@ use warnings;
 use utf8;
 
 use SBOM::CycloneDX::BomRef;
-use SBOM::CycloneDX::List;
 use SBOM::CycloneDX::Enum;
+use SBOM::CycloneDX::List;
 
 use JSON::PP;
 use Types::Standard qw(Str StrMatch Bool Enum InstanceOf HashRef);
@@ -26,7 +26,7 @@ around BUILDARGS => sub {
 
 extends 'SBOM::CycloneDX::Base';
 
-has type => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->COMPONENT_TYPES()], required => 1);
+has type => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->values('COMPONENT_TYPE')], required => 1);
 
 has mime_type => (is => 'rw', isa => StrMatch [qr{^[-+a-z0-9.]+/[-+a-z0-9.]+$}]);
 

@@ -14,7 +14,7 @@ use namespace::autoclean;
 
 extends 'SBOM::CycloneDX::Base';
 
-has common_extension_name  => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->COMMON_EXTENSION_NAMES()]);
+has common_extension_name  => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->values('COMMON_EXTENSION_NAME')]);
 has common_extension_value => (is => 'rw', isa => Str);
 has custom_extension_name  => (is => 'rw', isa => Str);
 has custom_extension_value => (is => 'rw', isa => Str);

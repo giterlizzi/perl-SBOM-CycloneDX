@@ -31,8 +31,12 @@ my %ALGO_LENGTH = (
     'Streebog-512' => 128,
 );
 
-has alg =>
-    (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->HASH_ALGORITHMS()], coerce => sub { uc($_[0]) }, required => 1);
+has alg => (
+    is       => 'rw',
+    isa      => Enum [SBOM::CycloneDX::Enum->values('HASH_ALGORITHM')],
+    coerce   => sub { uc($_[0]) },
+    required => 1
+);
 
 has content => (
     is       => 'rw',

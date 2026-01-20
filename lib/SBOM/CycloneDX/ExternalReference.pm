@@ -5,8 +5,8 @@ use strict;
 use warnings;
 use utf8;
 
-use SBOM::CycloneDX::List;
 use SBOM::CycloneDX::Enum;
+use SBOM::CycloneDX::List;
 
 use Types::Standard qw(Str Enum InstanceOf);
 use Types::TypeTiny qw(ArrayLike);
@@ -16,11 +16,11 @@ use namespace::autoclean;
 
 extends 'SBOM::CycloneDX::Base';
 
-has url     => (is => 'rw', isa => Str, required => 1);
+has url => (is => 'rw', isa => Str, required => 1);
 
 has comment => (is => 'rw', isa => Str);
 
-has type    => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->EXTERNAL_REFERENCE_TYPES()], required => 1);
+has type => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->values('EXTERNAL_REFERENCE_TYPE')], required => 1);
 
 has hashes => (
     is      => 'rw',

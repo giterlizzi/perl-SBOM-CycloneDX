@@ -18,7 +18,7 @@ use namespace::autoclean;
 
 extends 'SBOM::CycloneDX::Base';
 
-has asset_type => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->CRYPTO_ASSET_TYPES()], required => 1);
+has asset_type => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->values('CRYPTO_ASSET_TYPE')], required => 1);
 
 has algorithm_properties => (
     is      => 'rw',

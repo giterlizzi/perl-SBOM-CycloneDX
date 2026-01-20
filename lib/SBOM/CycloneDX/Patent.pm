@@ -6,6 +6,7 @@ use warnings;
 use utf8;
 
 use SBOM::CycloneDX::BomRef;
+use SBOM::CycloneDX::Enum;
 use SBOM::CycloneDX::List;
 use SBOM::CycloneDX::Timestamp;
 
@@ -55,7 +56,8 @@ has patent_expiration_date => (
     coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::Timestamp->new($_[0]) }
 );
 
-has patent_legal_status => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->PATENT_LEGAL_STATUSES()], required => 1);
+has patent_legal_status =>
+    (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->values('PATENT_LEGAL_STATUS')], required => 1);
 
 has patent_assignee => (
     is  => 'rw',

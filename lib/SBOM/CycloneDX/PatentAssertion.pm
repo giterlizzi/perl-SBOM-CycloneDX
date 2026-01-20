@@ -6,8 +6,8 @@ use warnings;
 use utf8;
 
 use SBOM::CycloneDX::BomRef;
-use SBOM::CycloneDX::List;
 use SBOM::CycloneDX::Enum;
+use SBOM::CycloneDX::List;
 
 use Types::Standard qw(Str InstanceOf Enum);
 use Types::TypeTiny qw(ArrayLike);
@@ -23,7 +23,7 @@ has bom_ref => (
     coerce => sub { ref($_[0]) ? $_[0] : SBOM::CycloneDX::BomRef->new($_[0]) }
 );
 
-has assertion_type => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->PATENT_ASSERTION_TYPES()], required => 1);
+has assertion_type => (is => 'rw', isa => Enum [SBOM::CycloneDX::Enum->values('PATENT_ASSERTION_TYPE')], required => 1);
 
 has patent_refs => (
     is      => 'rw',

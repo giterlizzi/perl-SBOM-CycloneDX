@@ -14,7 +14,7 @@ use namespace::autoclean;
 
 extends 'SBOM::CycloneDX::Base';
 
-has tlp => (is => 'rw', default => 'CLEAR', isa => Enum [SBOM::CycloneDX::Enum->TLP_CLASSIFICATIONS()]);
+has tlp => (is => 'rw', default => 'CLEAR', isa => Enum [SBOM::CycloneDX::Enum->values('TLP_CLASSIFICATION')]);
 
 sub TO_JSON {
 
