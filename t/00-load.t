@@ -64,6 +64,8 @@ my @modules = qw[
     SBOM::CycloneDX::Enum::CryptoPadding
     SBOM::CycloneDX::Enum::CryptoPrimitive
     SBOM::CycloneDX::Enum::ExternalReferenceType
+    SBOM::CycloneDX::Enum::ImpactAnalysisJustification
+    SBOM::CycloneDX::Enum::ImpactAnalysisState
     SBOM::CycloneDX::Enum::HashAlgorithm
     SBOM::CycloneDX::Enum::LicenseType
     SBOM::CycloneDX::Enum::LifecyclePhase
