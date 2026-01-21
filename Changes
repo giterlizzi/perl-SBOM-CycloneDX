@@ -1,6 +1,6 @@
 Change history for SBOM::CycloneDX
 
-1.0? 2026-01-??
+1.07 2026-01-21
     - Improved support for CycloneDX 1.7 (https://cyclonedx.org/docs/1.7/json/)
     - Improved documentations
     - Improved ENUM classes

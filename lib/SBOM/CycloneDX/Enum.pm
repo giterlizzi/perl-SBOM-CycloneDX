@@ -129,12 +129,25 @@ SBOM::CycloneDX::Enum - Enumeration
 
     use SBOM::CycloneDX::Enum;
 
-    say $_ for (@{SBOM::CycloneDX::Enum->SPDX_LICENSES})
+    say $_ for (@{ SBOM::CycloneDX::Enum->SPDX_LICENSES });
+
+
+    say $_ for (@{ SBOM::CycloneDX::Enum->values('EXTERNAL_REFERENCE_TYPE') });
 
 =head1 DESCRIPTION
 
 L<SBOM::CycloneDX::Enum> is internal class used by L<SBOM::CycloneDX>.
 
+
+=head1 METHODS
+
+=over
+
+=item SBOM::CycloneDX::Enum->values( $CONSTANT )
+
+Return the provided C<CONSTANT> Enum values.
+
+=back
 
 =head1 CONSTANTS
 
