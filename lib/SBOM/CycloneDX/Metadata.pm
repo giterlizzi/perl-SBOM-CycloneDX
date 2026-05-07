@@ -34,7 +34,7 @@ has timestamp => (
 
 has lifecycles => (
     is      => 'rw',
-    isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::Metadata::Lifecyle']],
+    isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::Metadata::LifeCycle']],
     default => sub { SBOM::CycloneDX::List->new }
 );
 
