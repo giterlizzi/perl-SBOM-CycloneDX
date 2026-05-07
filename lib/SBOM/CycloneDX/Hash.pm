@@ -34,7 +34,6 @@ my %ALGO_LENGTH = (
 has alg => (
     is       => 'rw',
     isa      => Enum [SBOM::CycloneDX::Enum->values('HASH_ALGORITHM')],
-    coerce   => sub { uc($_[0]) },
     required => 1
 );
 
