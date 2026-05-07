@@ -129,8 +129,6 @@ Properties:
 
 =over
 
-=item * C<BUILD>, 
-
 =item * C<authors>, The person(s) who created the BOM.
 Authors are common in BOMs created through manual processes. BOMs created
 through automated means may have "manufacturer" instead.
@@ -174,8 +172,6 @@ a distributor or repackager.
 validation of the BOM.
 
 =back
-
-=item $metadata->BUILD
 
 =item $metadata->authors
 
