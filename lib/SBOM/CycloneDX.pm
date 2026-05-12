@@ -445,6 +445,8 @@ This is the class hierarchy of the L<SBOM::CycloneDX> distribution.
 
 =back
 
+=item * L<SBOM::CycloneDX::Composition>
+
 =item * L<SBOM::CycloneDX::CryptoProperties>
 
 =over
@@ -508,6 +510,8 @@ This is the class hierarchy of the L<SBOM::CycloneDX> distribution.
 =item * L<SBOM::CycloneDX::Enum>
 
 =over
+
+=item * L<SBOM::CycloneDX::Enum::AggregateType>
 
 =item * L<SBOM::CycloneDX::Enum::CommonExtensionName>
 
@@ -614,6 +618,8 @@ This is the class hierarchy of the L<SBOM::CycloneDX> distribution.
 =item * L<SBOM::CycloneDX::Schema>
 
 =item * L<SBOM::CycloneDX::Service>
+
+=item * L<SBOM::CycloneDX::Source>
 
 =item * L<SBOM::CycloneDX::Standard>
 

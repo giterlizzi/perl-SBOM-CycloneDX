@@ -70,11 +70,7 @@ has properties => (
     default => sub { SBOM::CycloneDX::List->new }
 );
 
-has distribution_constraints => (
-    is      => 'rw',
-    isa     => ArrayLike [InstanceOf ['SBOM::CycloneDX::Metadata::DistributionConstraint']],
-    default => sub { SBOM::CycloneDX::List->new }
-);
+has distribution_constraints => (is => 'rw', isa => InstanceOf ['SBOM::CycloneDX::Metadata::DistributionConstraint']);
 
 sub TO_JSON {
 
@@ -86,14 +82,15 @@ sub TO_JSON {
         $json->{tools} = $self->tools;
     }
 
-    $json->{timestamp}   = $self->timestamp   if $self->timestamp;
-    $json->{lifecycles}  = $self->lifecycles  if @{$self->lifecycles};
-    $json->{authors}     = $self->authors     if @{$self->authors};
-    $json->{component}   = $self->component   if $self->component;
-    $json->{manufacture} = $self->manufacture if $self->manufacture;
-    $json->{supplier}    = $self->supplier    if $self->supplier;
-    $json->{licenses}    = $self->licenses    if @{$self->licenses};
-    $json->{properties}  = $self->properties  if @{$self->properties};
+    $json->{timestamp}               = $self->timestamp                if $self->timestamp;
+    $json->{lifecycles}              = $self->lifecycles               if @{$self->lifecycles};
+    $json->{authors}                 = $self->authors                  if @{$self->authors};
+    $json->{component}               = $self->component                if $self->component;
+    $json->{manufacture}             = $self->manufacture              if $self->manufacture;
+    $json->{supplier}                = $self->supplier                 if $self->supplier;
+    $json->{licenses}                = $self->licenses                 if @{$self->licenses};
+    $json->{properties}              = $self->properties               if @{$self->properties};
+    $json->{distributionConstraints} = $self->distribution_constraints if $self->distribution_constraints;
 
     return $json;
 

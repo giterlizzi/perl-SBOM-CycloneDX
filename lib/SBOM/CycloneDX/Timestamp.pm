@@ -56,7 +56,7 @@ sub _parse {
 
 sub to_string { shift->TO_JSON }
 
-sub TO_JSON { shift->value->datetime . '.000Z' }
+sub TO_JSON { shift->value->datetime . 'Z' }
 
 1;
 
