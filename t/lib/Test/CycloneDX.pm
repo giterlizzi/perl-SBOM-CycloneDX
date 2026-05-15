@@ -50,8 +50,8 @@ sub bom_test_data {
 
     BAIL_OUT("$test_name ($spec_version) not found") unless -f $test_file_path;
 
-    diag("Load $test_file");
-    diag("Spec Version: $spec_version");
+    note("Load $test_file");
+    note("Spec Version: $spec_version");
 
     return decode_json(file_read($test_file_path));
 
@@ -72,8 +72,8 @@ sub is_valid_bom {
     my $bom = shift;
     my @errors = $bom->validate;
 
-    diag $_ for @errors;
     is scalar @errors, 0, sprintf('JSON Schema: Valid CycloneDX %s', $bom->spec_version);
+    diag $_ for @errors;
 
 }
 
@@ -82,8 +82,8 @@ sub isnt_valid_bom {
     my $bom = shift;
     my @errors = $bom->validate;
 
-    diag $_ for @errors;
     isnt scalar @errors, 0, sprintf('JSON Schema: Not Valid CycloneDX %s', $bom->spec_version);
+    note $_ for @errors;
 
 }
 
@@ -91,7 +91,7 @@ sub is_bom {
 
     my $bom = shift;
 
-    diag "$bom";
     isnt "$bom", '', sprintf('Is CycloneDX %s JSON file', $bom->spec_version);
+    note "$bom";
 
 }
