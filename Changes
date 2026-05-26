@@ -1,5 +1,9 @@
 Change history for SBOM::CycloneDX
 
+1.?? 2026-05-??
+    - DEPRECATED "SBOM::CycloneDX::Vulnerability::Source" and "SBOM::CycloneDX::Issue::Source"
+      (giterlizzi/perl-SBOM-CycloneDX#11)
+
 1.08 2026-05-12
     - Added "SBOM::CycloneDX::Composition" and "SBOM::CycloneDX::Source"
     - Added "SBOM::CycloneDX::Enum::AggregateType"
