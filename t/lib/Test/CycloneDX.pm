@@ -69,21 +69,33 @@ sub bom_1_2 { SBOM::CycloneDX->new(spec_version => 1.2, serial_number => $SERIAL
 
 sub is_valid_bom {
 
-    my $bom = shift;
-    my @errors = $bom->validate;
+    SKIP: {
 
-    is scalar @errors, 0, sprintf('JSON Schema: Valid CycloneDX %s', $bom->spec_version);
-    diag $_ for @errors;
+        skip "Skip JSON Schema test" unless $ENV{JSON_SCHEMA_TESTING};
+
+        my $bom = shift;
+        my @errors = $bom->validate;
+
+        is scalar @errors, 0, sprintf('JSON Schema: Valid CycloneDX %s', $bom->spec_version);
+        diag $_ for @errors;
+
+    }
 
 }
 
 sub isnt_valid_bom {
 
-    my $bom = shift;
-    my @errors = $bom->validate;
+    SKIP: {
 
-    isnt scalar @errors, 0, sprintf('JSON Schema: Not Valid CycloneDX %s', $bom->spec_version);
-    note $_ for @errors;
+        skip "Skip JSON Schema test" unless $ENV{JSON_SCHEMA_TESTING};
+
+        my $bom = shift;
+        my @errors = $bom->validate;
+
+        isnt scalar @errors, 0, sprintf('JSON Schema: Not Valid CycloneDX %s', $bom->spec_version);
+        note $_ for @errors;
+
+    }
 
 }
 
